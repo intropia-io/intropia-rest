@@ -13,11 +13,11 @@
   "dependencies": {
     "@prisma/client": "4.4.0",
     "next": "12.3.1",
-    "next-swagger-doc": "0.3.0",
+    "next-swagger-doc": "0.3.6",
     "prisma-schema": "git+https://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:x-oauth-basic@github.com/tr3butor-org/prisma-schema.git",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "swagger-ui-react": "^4.14.3"
+    "swagger-ui-react": "4.14.2"
   },
   "devDependencies": {
     "@types/node": "18.8.4",

@@ -2068,7 +2068,7 @@ next-swagger-doc@^0.3.6:
     isarray "2.0.5"
     swagger-jsdoc "6.2.5"
 
-next@12.3.1:
+next@12.3.1, next@^12.3.1:
   version "12.3.1"
   resolved "https://registry.yarnpkg.com/next/-/next-12.3.1.tgz#127b825ad2207faf869b33393ec8c75fe61e50f1"
   integrity sha512-l7bvmSeIwX5lp07WtIiP9u2ytZMv7jIeB8iacR28PuUEFG5j0HGAPnMqyG5kbZNBG2H7tRsrQ4HCjuMOPnANZw==
@@ -2332,12 +2332,13 @@ prelude-ls@^1.2.1:
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.2.1.tgz#debc6489d7a6e6b0e7611888cec880337d316396"
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
 
-"prisma-schema@https://github.com/tr3butor-org/prisma-schema":
+"prisma-schema@git+https://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:x-oauth-basic@github.com/tr3butor-org/prisma-schema.git":
   version "1.0.0"
-  resolved "https://github.com/tr3butor-org/prisma-schema#77c8956c8f54fe5aa525a6bc15bafa62f772597f"
+  resolved "git+https://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:x-oauth-basic@github.com/tr3butor-org/prisma-schema.git#cc4647d99bafda4859c4ee893eb3b3f257332031"
   dependencies:
     "@prisma/client" "^4.4.0"
     "@types/node" "^18.8.4"
+    next "^12.3.1"
     prisma "4.4.0"
 
 prisma@4.4.0:

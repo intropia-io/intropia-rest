@@ -1,0 +1,254 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "t3butor rest api",
+    "version": "1.0"
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "Dynasty": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "Organization": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "cuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "contractAddress": {
+            "type": "string"
+          }
+        }
+      },
+      "Quest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "cuid"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "dynasty": {
+            "$ref": "#/components/schemas/Dynasty"
+          },
+          "token": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "type": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "linkApply": {
+            "type": "string"
+          },
+          "rewardFrom": {
+            "type": "number"
+          },
+          "rewardTo": {
+            "type": "number"
+          },
+          "textBlocks": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "organization": {
+            "$ref": "#/components/schemas/Organization"
+          }
+        }
+      },
+      "Token": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "avatar": {
+            "type": "string"
+          }
+        }
+      },
+      "Type": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/api/institutes/list": {
+      "get": {
+        "tags": [
+          "Institutes"
+        ],
+        "description": "Returns all institutes",
+        "parameters": [
+          {
+            "name": "take",
+            "description": "take number of rows (default 10)",
+            "in": "query",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "skip",
+            "description": "how many rows to skip (default 0)",
+            "in": "query",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "sort",
+            "description": "asc",
+            "in": "query",
+            "default": "desc",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Organization"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/quests/{questId}": {
+      "get": {
+        "tags": [
+          "Quests"
+        ],
+        "description": "Get Quest by id",
+        "parameters": [
+          {
+            "name": "questId",
+            "description": "id of quest",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Quest"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/quests/list": {
+      "get": {
+        "tags": [
+          "Quests"
+        ],
+        "description": "Returns all active quests",
+        "parameters": [
+          {
+            "name": "take",
+            "description": "take number of rows (default 100)",
+            "in": "query",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "skip",
+            "description": "how many rows to skip (default 0)",
+            "in": "query",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "sort",
+            "description": "desc or asc",
+            "in": "query",
+            "default": "desc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "contractAddress",
+            "description": "filter by contract address of institute",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "instituteId",
+            "description": "filter by instituteId of institute",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Quest"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": []
+}

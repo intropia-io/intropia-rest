@@ -1,46 +1,20 @@
-import {GetStaticProps, InferGetStaticPropsType} from 'next';
-import {createSwaggerSpec} from 'next-swagger-doc';
 import dynamic from 'next/dynamic';
+import Head from 'next/head';
 import 'swagger-ui-react/swagger-ui.css';
 
-const SwaggerUI = dynamic<{
-    spec: any;
-}>(import((`swagger-ui-react`)), {ssr: false});
+const SwaggerUI = dynamic<{ url: string }>(import('swagger-ui-react'), {
+    ssr: false,
+});
 
-function ApiDoc({spec}: InferGetStaticPropsType<typeof getStaticProps>) {
-    return <SwaggerUI spec={spec}/>;
+export default function Index() {
+    return (
+        <div>
+            <Head>
+                <title>tr3butor REST api</title>
+                <meta name="description" content="tr3butor REST api service"/>
+                <link rel="icon" href="/favicon.ico"/>
+            </Head>
+            <SwaggerUI url="/swagger.json"/>
+        </div>
+    );
 }
-
-export const getStaticProps: GetStaticProps = async () => {
-    const spec: Record<string, any> = createSwaggerSpec({
-        apiFolder: 'pages/api',
-        schemaFolders: ['models'],
-        definition: {
-            openapi: '3.0.0',
-            info: {
-                title: 't3butor rest api',
-                version: '1.0',
-            },
-            components: {
-                securitySchemes: {
-                    bearerAuth: {
-                        type: 'http',
-                        scheme: 'bearer',
-                        bearerFormat: 'JWT',
-                    }
-                }
-            },
-            security: [{
-                bearerAuth: []
-            }],
-        }
-    });
-
-    return {
-        props: {
-            spec,
-        },
-    };
-};
-
-export default ApiDoc;

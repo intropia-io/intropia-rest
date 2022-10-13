@@ -16,7 +16,7 @@ export const getStaticProps: GetStaticProps = async () => {
         apiFolder: 'pages/api',
         schemaFolders: ['models'],
         definition: {
-            openapi: '3.0.1',
+            openapi: '3.0.0',
             info: {
                 title: 't3butor rest api',
                 version: '1.0',

@@ -22,7 +22,7 @@
  *                 $ref: '#/components/schemas/Quest'
  */
 import type {NextApiRequest, NextApiResponse} from 'next'
-import prisma from '../../utilits/prisma';
+import prisma from '../../../utilits/prisma';
 
 export default async function handler(
     req: NextApiRequest,

@@ -1,0 +1,30 @@
+openapi: 3.0.0
+info:
+  title: Converted from dynasty.swagger.yaml with typeconv
+  version: '1'
+  x-id: dynasty.swagger.yaml
+  x-comment: >-
+    Generated from models\dynasty.ts by core-types-json-schema
+    (https://github.com/grantila/core-types-json-schema) on behalf of typeconv
+    (https://github.com/grantila/typeconv)
+paths: {}
+components:
+  schemas:
+    Dynasty:
+      properties:
+        name:
+          title: Dynasty.name
+          type: string
+      required:
+        - name
+      additionalProperties: false
+      title: Dynasty
+      description: |-
+        @swagger components:
+         schemas:
+           Dynasty:
+             type: object
+             properties:
+               name:
+                 type: string
+      type: object

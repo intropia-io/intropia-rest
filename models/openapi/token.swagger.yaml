@@ -1,0 +1,36 @@
+openapi: 3.0.0
+info:
+  title: Converted from token.swagger.yaml with typeconv
+  version: '1'
+  x-id: token.swagger.yaml
+  x-comment: >-
+    Generated from models\token.ts by core-types-json-schema
+    (https://github.com/grantila/core-types-json-schema) on behalf of typeconv
+    (https://github.com/grantila/typeconv)
+paths: {}
+components:
+  schemas:
+    Token:
+      properties:
+        name:
+          title: Token.name
+          type: string
+        avatar:
+          title: Token.avatar
+          type: string
+      required:
+        - name
+        - avatar
+      additionalProperties: false
+      title: Token
+      description: |-
+        @swagger components:
+         schemas:
+           Token:
+             type: object
+             properties:
+               name:
+                 type: string
+               avatar:
+                 type: string
+      type: object

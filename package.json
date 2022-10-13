@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "doc-cli": "yarn next-swagger-doc-cli next-swagger-doc.json"
+    "doc-cli": "yarn next-swagger-doc-cli next-swagger-doc.json",
+    "postbuild": "cpy 'models/**/*.swagger.yaml' public/openapi --flat",
+    "openapi:yaml": "yarn typeconv -f ts -t oapi --oapi-format yaml --output-extension 'swagger.yaml' --output-directory 'models/openapi' 'models/*.ts'"
   },
   "dependencies": {
     "@prisma/client": "4.4.0",

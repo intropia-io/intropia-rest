@@ -1,0 +1,64 @@
+openapi: 3.0.0
+info:
+  title: Converted from quest.swagger.yaml with typeconv
+  version: '1'
+  x-id: quest.swagger.yaml
+  x-comment: >-
+    Generated from models\quest.ts by core-types-json-schema
+    (https://github.com/grantila/core-types-json-schema) on behalf of typeconv
+    (https://github.com/grantila/typeconv)
+paths: {}
+components:
+  schemas:
+    Quest:
+      properties:
+        id:
+          title: Quest.id
+          type: string
+        title:
+          title: Quest.title
+          type: string
+        description:
+          title: Quest.description
+          type: string
+        dynasty:
+          $ref: '#/components/schemas/Dynasty'
+          title: Quest.dynasty
+        token:
+          $ref: '#/components/schemas/Token'
+          title: Quest.token
+        type:
+          $ref: '#/components/schemas/Type'
+          title: Quest.type
+        linkApply:
+          title: Quest.linkApply
+          type: string
+        rewardFrom:
+          title: Quest.rewardFrom
+          type: number
+        rewardTo:
+          title: Quest.rewardTo
+          type: number
+        textBlocks:
+          title: Quest.textBlocks
+          type: string
+        updatedAt:
+          title: Quest.updatedAt
+          type: string
+        organization:
+          $ref: '#/components/schemas/Organization'
+          title: Quest.organization
+      required:
+        - id
+        - title
+        - description
+        - dynasty
+        - token
+        - type
+        - linkApply
+        - textBlocks
+        - updatedAt
+        - organization
+      additionalProperties: false
+      title: Quest
+      type: object

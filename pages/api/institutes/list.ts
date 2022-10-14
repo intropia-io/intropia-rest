@@ -53,6 +53,7 @@ export default async function handler(
     select: {
       id: true,
       name: true,
+      description: true,
       linkWebsite: true,
       linkTelegram: true,
       linkTwitter: true,

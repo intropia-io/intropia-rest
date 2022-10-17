@@ -30,7 +30,7 @@
  *               type: array
  *               items:
  *                 type: object
- *                 $ref: '#/components/schemas/Organization'
+ *                 $ref: '#/components/schemas/Institute'
  */
 
 import type { NextApiRequest, NextApiResponse } from "next";

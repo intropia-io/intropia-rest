@@ -46,7 +46,7 @@ components:
           title: Quest.updatedAt
           type: string
         organization:
-          $ref: '#/components/schemas/Organization'
+          $ref: '#/components/schemas/Institute'
           title: Quest.organization
       required:
         - id

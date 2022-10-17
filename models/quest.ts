@@ -30,10 +30,10 @@
  *          type: string
  *          format: date-time
  *        organization:
- *          $ref: '#/components/schemas/Organization'
+ *          $ref: '#/components/schemas/Institute'
  */
 
-import {Organization} from "./organization";
+import {Institute} from "./institute";
 import {Dynasty} from "./dynasty";
 import {Token} from "./token";
 import {Type} from "./type";
@@ -50,5 +50,5 @@ export interface Quest {
     rewardTo?: number;
     textBlocks: string;
     updatedAt: string;
-    organization: Organization
+    organization: Institute
 }

@@ -1,0 +1,85 @@
+openapi: 3.0.0
+info:
+  title: Converted from institute.swagger.yaml with typeconv
+  version: '1'
+  x-id: institute.swagger.yaml
+  x-comment: >-
+    Generated from models\institute.ts by core-types-json-schema
+    (https://github.com/grantila/core-types-json-schema) on behalf of typeconv
+    (https://github.com/grantila/typeconv)
+paths: {}
+components:
+  schemas:
+    Institute:
+      properties:
+        id:
+          title: Institute.id
+          type: string
+        name:
+          title: Institute.name
+          type: string
+        description:
+          title: Institute.description
+          type: string
+        linkWebsite:
+          title: Institute.linkWebsite
+          type: string
+        linkTelegram:
+          title: Institute.linkTelegram
+          type: string
+        linkTwitter:
+          title: Institute.linkTwitter
+          type: string
+        linkReddit:
+          title: Institute.linkReddit
+          type: string
+        linkDiscord:
+          title: Institute.linkDiscord
+          type: string
+        linkMedium:
+          title: Institute.linkMedium
+          type: string
+        contractAddress:
+          title: Institute.contractAddress
+          type: string
+      required:
+        - id
+        - name
+        - description
+        - linkWebsite
+        - linkTelegram
+        - linkTwitter
+        - linkReddit
+        - linkDiscord
+        - linkMedium
+        - contractAddress
+      additionalProperties: false
+      title: Institute
+      description: |-
+        @swagger components:
+         schemas:
+           Institute:
+             type: object
+             properties:
+               id:
+                 type: string
+                 format: cuid
+               name:
+                 type: string
+               description:
+                 type: string
+               linkWebsite:
+                 type: string
+               linkTelegram:
+                 type: string
+               linkTwitter:
+                 type: string
+               linkReddit:
+                 type: string
+               linkDiscord:
+                 type: string
+               linkMedium:
+                 type: string
+               contractAddress:
+                 type: string
+      type: object

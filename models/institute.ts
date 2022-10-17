@@ -2,7 +2,7 @@
  * @swagger
  * components:
  *  schemas:
- *    Organization:
+ *    Institute:
  *      type: object
  *      properties:
  *        id:
@@ -28,7 +28,7 @@
  *          type: string
  */
 
-export interface Organization {
+export interface Institute {
   id: string;
   name: string;
   description: string;

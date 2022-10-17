@@ -18,6 +18,7 @@
     "prisma-schema": "git+https://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:x-oauth-basic@github.com/tr3butor-org/prisma-schema.git",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "sass": "^1.55.0",
     "swagger-ui-react": "4.14.3"
   },
   "devDependencies": {

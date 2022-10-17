@@ -139,7 +139,7 @@
             "title": "Quest.updatedAt"
           },
           "organization": {
-            "$ref": "#/components/schemas/Organization",
+            "$ref": "#/components/schemas/Institute",
             "title": "Quest.organization"
           }
         },

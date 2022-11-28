@@ -12,19 +12,34 @@ components:
   schemas:
     Type:
       properties:
+        id:
+          title: Type.id
+          type: number
         name:
           title: Type.name
           type: string
+        description:
+          title: Type.description
+          type: string
+        color:
+          title: Type.color
+          type: string
+        categoryType:
+          $ref: '#/components/schemas/CategoryType'
+          title: Type.categoryType
+        customRules:
+          items:
+            $ref: '#/components/schemas/CustomRules'
+            title: Type.customRules.[]
+          title: Type.customRules
+          type: array
       required:
+        - id
         - name
+        - description
+        - color
+        - categoryType
+        - customRules
       additionalProperties: false
       title: Type
-      description: |-
-        @swagger components:
-         schemas:
-           Type:
-             type: object
-             properties:
-               name:
-                 type: string
       type: object

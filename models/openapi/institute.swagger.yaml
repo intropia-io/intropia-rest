@@ -55,31 +55,5 @@ components:
         - contractAddress
       additionalProperties: false
       title: Institute
-      description: |-
-        @swagger components:
-         schemas:
-           Institute:
-             type: object
-             properties:
-               id:
-                 type: string
-                 format: cuid
-               name:
-                 type: string
-               description:
-                 type: string
-               linkWebsite:
-                 type: string
-               linkTelegram:
-                 type: string
-               linkTwitter:
-                 type: string
-               linkReddit:
-                 type: string
-               linkDiscord:
-                 type: string
-               linkMedium:
-                 type: string
-               contractAddress:
-                 type: string
+      description: "@swagger components:\r\n schemas:\r\n   Institute:\r\n     type: object\r\n     properties:\r\n       id:\r\n         type: string\r\n         format: cuid\r\n       name:\r\n         type: string\r\n       description:\r\n         type: string\r\n       linkWebsite:\r\n         type: string\r\n       linkTelegram:\r\n         type: string\r\n       linkTwitter:\r\n         type: string\r\n       linkReddit:\r\n         type: string\r\n       linkDiscord:\r\n         type: string\r\n       linkMedium:\r\n         type: string\r\n       contractAddress:\r\n         type: string"
       type: object

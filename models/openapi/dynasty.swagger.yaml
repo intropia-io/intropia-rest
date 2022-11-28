@@ -12,19 +12,24 @@ components:
   schemas:
     Dynasty:
       properties:
+        id:
+          title: Dynasty.id
+          type: string
         name:
           title: Dynasty.name
           type: string
+        description:
+          title: Dynasty.description
+          type: string
+        avatar:
+          title: Dynasty.avatar
+          type: string
       required:
+        - id
         - name
+        - description
+        - avatar
       additionalProperties: false
       title: Dynasty
-      description: |-
-        @swagger components:
-         schemas:
-           Dynasty:
-             type: object
-             properties:
-               name:
-                 type: string
+      description: "@swagger components:\r\n schemas:\r\n   Dynasty:\r\n     type: object\r\n     properties:\r\n       name:\r\n         id: string\r\n         type: string\r\n         description: string\r\n         avatar: string"
       type: object

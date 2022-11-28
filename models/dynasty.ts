@@ -6,9 +6,15 @@
  *      type: object
  *      properties:
  *        name:
+ *          id: string
  *          type: string
+ *          description: string
+ *          avatar: string
  */
 
 export interface Dynasty {
-    name: string;
+    id: string
+    name: string
+    description: string
+    avatar: string
 }

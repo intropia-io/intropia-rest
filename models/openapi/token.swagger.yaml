@@ -23,14 +23,5 @@ components:
         - avatar
       additionalProperties: false
       title: Token
-      description: |-
-        @swagger components:
-         schemas:
-           Token:
-             type: object
-             properties:
-               name:
-                 type: string
-               avatar:
-                 type: string
+      description: "@swagger components:\r\n schemas:\r\n   Token:\r\n     type: object\r\n     properties:\r\n       name:\r\n         type: string\r\n       avatar:\r\n         type: string"
       type: object

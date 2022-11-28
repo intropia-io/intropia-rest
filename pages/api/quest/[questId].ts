@@ -1,6 +1,6 @@
 /**
  * @swagger
- * /api/quests/{questId}:
+ * /api/quest/{questId}:
  *   get:
  *     tags: [Quests]
  *     description: Get Quest by id

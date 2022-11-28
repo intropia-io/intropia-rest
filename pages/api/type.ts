@@ -32,9 +32,6 @@ export default async function handler(
       categoryType: true,
       customRules: true
     },
-    where: {
-      published: true
-    },
     orderBy: [
       {
         name: "asc",

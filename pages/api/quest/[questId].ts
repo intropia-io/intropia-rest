@@ -21,22 +21,24 @@
  *                 type: object
  *                 $ref: '#/components/schemas/Quest'
  */
-import type {NextApiRequest, NextApiResponse} from 'next'
-import prisma from '../../../utilits/prisma';
+import type { NextApiRequest, NextApiResponse } from 'next'
+import { hasRights } from '../../../prisma/hasRights';
+import prisma from '../../../utilities/prisma';
 
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<any>
 ) {
-    const {questId} = req.query;
-    const token = req.headers.authorization;
-    if (!token || token !== `Bearer ${process.env.NEXT_PUBLIC_DAOHQ_BEARER}`)
-        return res.status(400).json({error: "token not defined"})
+    const { questId } = req.query;
+    const token = req.headers.authorization?.split(" ")[1];
+    const _hasRights = await hasRights({ token: token! });
+    if (!_hasRights)
+        return res.status(400).json({ error: "auth not correct" });
 
     if (!questId)
-        return res.status(401).json({error: "no questId"})
+        return res.status(401).json({ error: "no questId" })
 
-    const quest = await prisma.quests.findUnique({
+    const quest = await prisma.quests.findFirst({
         select: {
             id: true,
             title: true,
@@ -68,7 +70,7 @@ export default async function handler(
                 }
             }
         },
-        where: {id: questId?.toString()},
+        where: { id: questId?.toString(), state: "PUBLISHED", },
     })
     return res.status(200).json(quest)
 }

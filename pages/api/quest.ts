@@ -43,19 +43,21 @@
  *                 $ref: '#/components/schemas/Quest'
  */
 
-import type {NextApiRequest, NextApiResponse} from 'next'
-import prisma from '../../utilits/prisma';
+import type { NextApiRequest, NextApiResponse } from 'next'
+import { hasRights } from '../../prisma/hasRights';
+import prisma from '../../utilities/prisma';
 
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<any>
 ) {
-    const token = req.headers.authorization;
-    if (!token || token !== `Bearer ${process.env.NEXT_PUBLIC_DAOHQ_BEARER}`)
-        return res.status(400).json({error: "token not defined"})
+    const token = req.headers.authorization?.split(" ")[1];
+    const _hasRights = await hasRights({ token: token! });
+    if (!_hasRights)
+        return res.status(400).json({ error: "auth not correct" });
 
     const {
-        query: {take, skip, sort, contractAddress, instituteId},
+        query: { take, skip, sort, contractAddress, instituteId },
     } = req;
     const quests = await prisma.quests.findMany({
         take: take ? parseInt(take.toString()) : 100,
@@ -94,8 +96,8 @@ export default async function handler(
             }
         },
         where: {
-            published: true,
-            organization: {contractAddress: {contains: contractAddress ? contractAddress.toString() : undefined}, id: {equals: instituteId ? instituteId.toString() : undefined}}
+            state: "PUBLISHED",
+            organization: { contractAddress: { contains: contractAddress ? contractAddress.toString() : undefined }, id: { equals: instituteId ? instituteId.toString() : undefined } }
         },
         orderBy: [
             {

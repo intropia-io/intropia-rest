@@ -6,13 +6,75 @@
   },
   "components": {
     "securitySchemes": {
-      "bearerAuth": {
+      "basicAuth": {
         "type": "http",
-        "scheme": "bearer",
-        "bearerFormat": "JWT"
+        "scheme": "basic"
       }
     },
     "schemas": {
+      "Type": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "id": "string",
+            "userId": "string",
+            "fisrtName": "string",
+            "lastName": "string",
+            "username": "string",
+            "dynasty": {
+              "$ref": "#/components/schemas/Dynasty"
+            },
+            "questTypes": {
+              "$ref": "#/components/schemas/Type"
+            },
+            "eventTypes": {
+              "$ref": "#/components/schemas/Type"
+            },
+            "reffProgram": "ReffProgram",
+            "updateFrequency": "UpdateFrequency",
+            "type": "string",
+            "description": "string",
+            "color": "string",
+            "categoryType": "CategoryType",
+            "customRules": "CustomRules[]",
+            "title": "Type.name"
+          },
+          "id": {
+            "title": "Type.id",
+            "type": "number"
+          },
+          "description": {
+            "title": "Type.description",
+            "type": "string"
+          },
+          "color": {
+            "title": "Type.color",
+            "type": "string"
+          },
+          "categoryType": {
+            "$ref": "#/components/schemas/CategoryType",
+            "title": "Type.categoryType"
+          },
+          "customRules": {
+            "items": {
+              "$ref": "#/components/schemas/CustomRules",
+              "title": "Type.customRules.[]"
+            },
+            "title": "Type.customRules",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "description",
+          "color",
+          "categoryType",
+          "customRules"
+        ],
+        "additionalProperties": false,
+        "title": "Type"
+      },
       "Dynasty": {
         "type": "object",
         "properties": {
@@ -196,53 +258,142 @@
         "title": "Token",
         "description": "@swagger components:\r\n schemas:\r\n   Token:\r\n     type: object\r\n     properties:\r\n       name:\r\n         type: string\r\n       avatar:\r\n         type: string"
       },
-      "Type": {
-        "type": "object",
+      "BotSubscription": {
         "properties": {
-          "name": {
-            "id": "string",
-            "type": "string",
-            "description": "string",
-            "color": "string",
-            "categoryType": "CategoryType",
-            "customRules": "CustomRules[]",
-            "title": "Type.name"
-          },
           "id": {
-            "title": "Type.id",
+            "title": "BotSubscription.id",
             "type": "number"
           },
-          "description": {
-            "title": "Type.description",
+          "userId": {
+            "title": "BotSubscription.userId",
             "type": "string"
           },
-          "color": {
-            "title": "Type.color",
+          "fisrtName": {
+            "title": "BotSubscription.fisrtName",
             "type": "string"
           },
-          "categoryType": {
-            "$ref": "#/components/schemas/CategoryType",
-            "title": "Type.categoryType"
+          "lastName": {
+            "title": "BotSubscription.lastName",
+            "type": "string"
           },
-          "customRules": {
+          "username": {
+            "title": "BotSubscription.username",
+            "type": "string"
+          },
+          "dynasty": {
             "items": {
-              "$ref": "#/components/schemas/CustomRules",
-              "title": "Type.customRules.[]"
+              "$ref": "#/components/schemas/Dynasty",
+              "title": "BotSubscription.dynasty.[]"
             },
-            "title": "Type.customRules",
+            "title": "BotSubscription.dynasty",
             "type": "array"
+          },
+          "questTypes": {
+            "items": {
+              "$ref": "#/components/schemas/Type",
+              "title": "BotSubscription.questTypes.[]"
+            },
+            "title": "BotSubscription.questTypes",
+            "type": "array"
+          },
+          "eventTypes": {
+            "items": {
+              "$ref": "#/components/schemas/Type",
+              "title": "BotSubscription.eventTypes.[]"
+            },
+            "title": "BotSubscription.eventTypes",
+            "type": "array"
+          },
+          "reffProgram": {
+            "$ref": "#/components/schemas/ReffProgram",
+            "title": "BotSubscription.reffProgram"
+          },
+          "updateFrequency": {
+            "$ref": "#/components/schemas/UpdateFrequency",
+            "title": "BotSubscription.updateFrequency"
           }
         },
         "required": [
           "id",
-          "name",
-          "description",
-          "color",
-          "categoryType",
-          "customRules"
+          "userId",
+          "fisrtName",
+          "lastName",
+          "username",
+          "dynasty",
+          "questTypes",
+          "eventTypes",
+          "reffProgram",
+          "updateFrequency"
         ],
         "additionalProperties": false,
-        "title": "Type"
+        "title": "BotSubscription",
+        "type": "object"
+      },
+      "BotSubscriptionPost": {
+        "properties": {
+          "userId": {
+            "title": "BotSubscriptionPost.userId",
+            "type": "string"
+          },
+          "fisrtName": {
+            "title": "BotSubscriptionPost.fisrtName",
+            "type": "string"
+          },
+          "lastName": {
+            "title": "BotSubscriptionPost.lastName",
+            "type": "string"
+          },
+          "username": {
+            "title": "BotSubscriptionPost.username",
+            "type": "string"
+          },
+          "dynasty": {
+            "items": {
+              "title": "BotSubscriptionPost.dynasty.[]",
+              "type": "string"
+            },
+            "title": "BotSubscriptionPost.dynasty",
+            "type": "array"
+          },
+          "questTypes": {
+            "items": {
+              "title": "BotSubscriptionPost.questTypes.[]",
+              "type": "string"
+            },
+            "title": "BotSubscriptionPost.questTypes",
+            "type": "array"
+          },
+          "eventTypes": {
+            "items": {
+              "title": "BotSubscriptionPost.eventTypes.[]",
+              "type": "string"
+            },
+            "title": "BotSubscriptionPost.eventTypes",
+            "type": "array"
+          },
+          "reffProgram": {
+            "$ref": "#/components/schemas/ReffProgram",
+            "title": "BotSubscriptionPost.reffProgram"
+          },
+          "updateFrequency": {
+            "$ref": "#/components/schemas/UpdateFrequency",
+            "title": "BotSubscriptionPost.updateFrequency"
+          }
+        },
+        "required": [
+          "userId",
+          "fisrtName",
+          "lastName",
+          "username",
+          "dynasty",
+          "questTypes",
+          "eventTypes",
+          "reffProgram",
+          "updateFrequency"
+        ],
+        "additionalProperties": false,
+        "title": "BotSubscriptionPost",
+        "type": "object"
       },
       "CategoryType": {
         "enum": [
@@ -260,12 +411,36 @@
         ],
         "title": "CustomRules",
         "type": "string"
+      },
+      "ReffProgram": {
+        "enum": [
+          "SUBSCRIBED",
+          "UNSUBSCRIBED"
+        ],
+        "title": "ReffProgram",
+        "type": "string"
+      },
+      "UpdateFrequency": {
+        "enum": [
+          "WEEKLY",
+          "REALTIME"
+        ],
+        "title": "UpdateFrequency",
+        "type": "string"
+      },
+      "RestUserType": {
+        "enum": [
+          "INHOUSE",
+          "OUTHOUSE"
+        ],
+        "title": "RestUserType",
+        "type": "string"
       }
     }
   },
   "security": [
     {
-      "bearerAuth": []
+      "basicAuth": []
     }
   ],
   "paths": {
@@ -428,6 +603,64 @@
                   "items": {
                     "type": "object",
                     "$ref": "#/components/schemas/Quest"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/subscription": {
+      "get": {
+        "tags": [
+          "Bot Subscription"
+        ],
+        "description": "Returns all bot subscriptions",
+        "responses": {
+          "200": {
+            "description": "success result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/BotSubscription"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/subscription/create": {
+      "post": {
+        "tags": [
+          "Bot Subscription"
+        ],
+        "description": "create new subscription",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/BotSubscriptionPost"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "success result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/BotSubscription"
                   }
                 }
               }

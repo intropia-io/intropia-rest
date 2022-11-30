@@ -1,9 +1,9 @@
 /**
  * @swagger
- * /api/type:
+ * /api/subscription:
  *   get:
- *     tags: [Types]
- *     description: Returns all types
+ *     tags: [Bot Subscription]
+ *     description: Returns all bot subscriptions
  *     responses:
  *       200:
  *         description: success result
@@ -13,28 +13,28 @@
  *               type: array
  *               items:
  *                 type: object
- *                 $ref: '#/components/schemas/Type'
+ *                 $ref: '#/components/schemas/BotSubscription'
  */
 
 import type { NextApiRequest, NextApiResponse } from "next";
+import { hasRights } from "../../prisma/hasRights";
 import prisma from "../../utilities/prisma";
+
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) {
-  const types = await prisma.type.findMany({
-    select: {
-      id: true,
-      name: true,
-      description: true,
-      color: true,
-      categoryType: true,
-      customRules: true
-    },
+
+  const token = req.headers.authorization?.split(" ")[1];
+  const _hasRights = await hasRights({ token: token!, type: "INHOUSE" });
+  if (!_hasRights)
+    return res.status(400).json({ error: "auth not correct" });
+
+  const types = await prisma.botSubscription.findMany({
     orderBy: [
       {
-        name: "asc",
+        createdAt: "asc",
       },
     ],
   });

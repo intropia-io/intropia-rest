@@ -17,12 +17,13 @@
  */
 
 import type { NextApiRequest, NextApiResponse } from "next";
-import prisma from "../../utilits/prisma";
+import prisma from "../../utilities/prisma";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) {
+  console.log(req.headers.authorization)
   const dynasties = await prisma.dynasty.findMany({
     select: {
       id: true,

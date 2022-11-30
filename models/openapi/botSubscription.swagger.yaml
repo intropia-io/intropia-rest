@@ -1,0 +1,118 @@
+openapi: 3.0.0
+info:
+  title: Converted from botSubscription.swagger.yaml with typeconv
+  version: '1'
+  x-id: botSubscription.swagger.yaml
+  x-comment: >-
+    Generated from models\botSubscription.ts by core-types-json-schema
+    (https://github.com/grantila/core-types-json-schema) on behalf of typeconv
+    (https://github.com/grantila/typeconv)
+paths: {}
+components:
+  schemas:
+    BotSubscription:
+      properties:
+        id:
+          title: BotSubscription.id
+          type: number
+        userId:
+          title: BotSubscription.userId
+          type: string
+        fisrtName:
+          title: BotSubscription.fisrtName
+          type: string
+        lastName:
+          title: BotSubscription.lastName
+          type: string
+        username:
+          title: BotSubscription.username
+          type: string
+        dynasty:
+          items:
+            $ref: '#/components/schemas/Dynasty'
+            title: BotSubscription.dynasty.[]
+          title: BotSubscription.dynasty
+          type: array
+        questTypes:
+          items:
+            $ref: '#/components/schemas/Type'
+            title: BotSubscription.questTypes.[]
+          title: BotSubscription.questTypes
+          type: array
+        eventTypes:
+          items:
+            $ref: '#/components/schemas/Type'
+            title: BotSubscription.eventTypes.[]
+          title: BotSubscription.eventTypes
+          type: array
+        reffProgram:
+          $ref: '#/components/schemas/ReffProgram'
+          title: BotSubscription.reffProgram
+        updateFrequency:
+          $ref: '#/components/schemas/UpdateFrequency'
+          title: BotSubscription.updateFrequency
+      required:
+        - id
+        - userId
+        - fisrtName
+        - lastName
+        - username
+        - dynasty
+        - questTypes
+        - eventTypes
+        - reffProgram
+        - updateFrequency
+      additionalProperties: false
+      title: BotSubscription
+      type: object
+    BotSubscriptionPost:
+      properties:
+        userId:
+          title: BotSubscriptionPost.userId
+          type: string
+        fisrtName:
+          title: BotSubscriptionPost.fisrtName
+          type: string
+        lastName:
+          title: BotSubscriptionPost.lastName
+          type: string
+        username:
+          title: BotSubscriptionPost.username
+          type: string
+        dynasty:
+          items:
+            title: BotSubscriptionPost.dynasty.[]
+            type: string
+          title: BotSubscriptionPost.dynasty
+          type: array
+        questTypes:
+          items:
+            title: BotSubscriptionPost.questTypes.[]
+            type: string
+          title: BotSubscriptionPost.questTypes
+          type: array
+        eventTypes:
+          items:
+            title: BotSubscriptionPost.eventTypes.[]
+            type: string
+          title: BotSubscriptionPost.eventTypes
+          type: array
+        reffProgram:
+          $ref: '#/components/schemas/ReffProgram'
+          title: BotSubscriptionPost.reffProgram
+        updateFrequency:
+          $ref: '#/components/schemas/UpdateFrequency'
+          title: BotSubscriptionPost.updateFrequency
+      required:
+        - userId
+        - fisrtName
+        - lastName
+        - username
+        - dynasty
+        - questTypes
+        - eventTypes
+        - reffProgram
+        - updateFrequency
+      additionalProperties: false
+      title: BotSubscriptionPost
+      type: object

@@ -34,15 +34,17 @@
  */
 
 import type { NextApiRequest, NextApiResponse } from "next";
-import prisma from "../../utilits/prisma";
+import { hasRights } from "../../prisma/hasRights";
+import prisma from "../../utilities/prisma";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) {
-  const token = req.headers.authorization;
-  if (!token || token !== `Bearer ${process.env.NEXT_PUBLIC_DAOHQ_BEARER}`)
-    return res.status(400).json({ error: "token not defined" });
+  const token = req.headers.authorization?.split(" ")[1];
+  const _hasRights = await hasRights({ token: token! });
+  if (!_hasRights)
+    return res.status(400).json({ error: "auth not correct" });
 
   const {
     query: { take, skip, sort },
@@ -61,6 +63,9 @@ export default async function handler(
       linkDiscord: true,
       linkMedium: true,
       contractAddress: true,
+    },
+    where: {
+      state: "PUBLISHED",
     },
     orderBy: [
       {

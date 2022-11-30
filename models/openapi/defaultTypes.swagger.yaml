@@ -23,3 +23,21 @@ components:
         - HIDE_FROM_EXPLORER
       title: CustomRules
       type: string
+    ReffProgram:
+      enum:
+        - SUBSCRIBED
+        - UNSUBSCRIBED
+      title: ReffProgram
+      type: string
+    UpdateFrequency:
+      enum:
+        - WEEKLY
+        - REALTIME
+      title: UpdateFrequency
+      type: string
+    RestUserType:
+      enum:
+        - INHOUSE
+        - OUTHOUSE
+      title: RestUserType
+      type: string

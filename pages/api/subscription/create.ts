@@ -65,13 +65,13 @@ export default async function handler(
             lastName,
             username,
             dynasties: {
-                connect: dynasty.length > 0 ? dynasty.map((dynasty: string) => ({ id: dynasty })) : []
+                connect: (dynasty && dynasty.length > 0) ? dynasty.map((dynasty: string) => ({ id: dynasty })) : []
             },
             questTypes: {
-                connect: questTypes.length > 0 ? questTypes.map((questType: string) => ({ id: questType })) : []
+                connect: (questTypes && questTypes.length > 0) ? questTypes.map((questType: string) => ({ id: questType })) : []
             },
             eventTypes: {
-                connect: eventTypes.length > 0 ? eventTypes.map((eventType: string) => ({ id: eventType })) : []
+                connect: (eventTypes && eventTypes.length > 0) ? eventTypes.map((eventType: string) => ({ id: eventType })) : []
             },
             reffProgram,
             updateFrequency

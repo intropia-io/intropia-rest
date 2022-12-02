@@ -48,7 +48,7 @@ export default async function handler(
             userId: userId,
         },
         update: {
-            fisrtName,
+            firstName,
             lastName,
             username,
             dynasties: {
@@ -65,7 +65,7 @@ export default async function handler(
         },
         create: {
             userId,
-            fisrtName,
+            firstName,
             lastName,
             username,
             dynasties: {

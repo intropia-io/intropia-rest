@@ -31,7 +31,7 @@ export default async function handler(
 ) {
 
     if (req.method !== 'POST') {
-        return null
+        return res.status(200)
     }
     const token = req.headers.authorization?.split(" ")[1];
     const _hasRights = await hasRights({ token: token!, type: "INHOUSE" });

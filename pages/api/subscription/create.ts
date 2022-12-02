@@ -30,9 +30,10 @@ export default async function handler(
     res: NextApiResponse<any>
 ) {
 
-    if (req.method !== 'POST')
-        return res.status(200).json({ error: "no get request" });
-
+    if (req.method === 'OPTIONS') {
+        res.status(200).end()
+        return
+    }
     const token = req.headers.authorization?.split(" ")[1];
     const _hasRights = await hasRights({ token: token!, type: "INHOUSE" });
     if (!_hasRights)

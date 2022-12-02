@@ -30,6 +30,9 @@ export default async function handler(
     res: NextApiResponse<any>
 ) {
 
+    if (req.method !== 'POST') {
+        return null
+    }
     const token = req.headers.authorization?.split(" ")[1];
     const _hasRights = await hasRights({ token: token!, type: "INHOUSE" });
     if (!_hasRights)

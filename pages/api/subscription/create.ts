@@ -41,7 +41,7 @@ export default async function handler(
 
 
 
-    const { userId, fisrtName, lastName, username, dynasty, questTypes, eventTypes, reffProgram, updateFrequency } = req.body;
+    const { userId, firstName, lastName, username, dynasty, questTypes, eventTypes, reffProgram, updateFrequency } = req.body;
 
     const types = await prisma.botSubscription.upsert({
         where: {

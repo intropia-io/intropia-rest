@@ -635,6 +635,39 @@
         }
       }
     },
+    "/api/subscription/{userId}": {
+      "get": {
+        "tags": [
+          "Bot Subscription"
+        ],
+        "description": "create new subscription",
+        "parameters": [
+          {
+            "name": "userId",
+            "description": "id of user chat",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/BotSubscription"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/subscription/create": {
       "post": {
         "tags": [

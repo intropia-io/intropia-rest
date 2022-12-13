@@ -640,7 +640,7 @@
         "tags": [
           "Bot Subscription"
         ],
-        "description": "create new subscription",
+        "description": "get user subscription info",
         "parameters": [
           {
             "name": "userId",

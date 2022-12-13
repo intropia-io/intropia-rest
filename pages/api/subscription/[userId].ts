@@ -3,7 +3,7 @@
  * /api/subscription/{userId}:
  *   get:
  *     tags: [Bot Subscription]
- *     description: create new subscription
+ *     description: get user subscription info
  *     parameters:
  *       - name: userId
  *         description: id of user chat

@@ -6,14 +6,14 @@ type Props = {
     type?: RestUserType
 }
 
-export const hasRights = async ({ token, type }: Props) =>
+export const hasRights = async ({ token, type }: Props) => token ?
     await prisma.restUser.findFirst({
         where: {
-            token,
-            type
+            token: token,
+            type: type
         }
     }).then((user) => {
         return !!user;
     }).catch((err) => {
         return false;
-    });
+    }) : false;

@@ -23,6 +23,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) {
+  if (req.method === 'OPTIONS') {
+    res.status(200).end()
+    return
+  }
   const types = await prisma.type.findMany({
     select: {
       id: true,

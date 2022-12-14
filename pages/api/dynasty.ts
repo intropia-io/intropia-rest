@@ -23,7 +23,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) {
-  console.log(req.headers.authorization)
+  if (req.method === 'OPTIONS') {
+    res.status(200).end()
+    return
+  }
   const dynasties = await prisma.dynasty.findMany({
     select: {
       id: true,

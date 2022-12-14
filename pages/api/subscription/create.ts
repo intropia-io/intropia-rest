@@ -52,12 +52,15 @@ export default async function handler(
             lastName,
             username,
             dynasties: {
+                set: [],
                 connect: (dynasty && dynasty.length > 0) ? dynasty.map((dynasty: string) => ({ id: dynasty })) : []
             },
             questTypes: {
+                set: [],
                 connect: (questTypes && questTypes.length > 0) ? questTypes.map((questType: string) => ({ id: questType })) : []
             },
             eventTypes: {
+                set: [],
                 connect: (eventTypes && eventTypes.length > 0) ? eventTypes.map((eventType: string) => ({ id: eventType })) : []
             },
             reffProgram,

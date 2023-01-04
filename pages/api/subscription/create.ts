@@ -43,6 +43,8 @@ export default async function handler(
 
     const { userId, firstName, lastName, username, dynasty, questTypes, eventTypes, reffProgram, updateFrequency } = req.body;
 
+    const user = await prisma.botSubscription.findUnique({ where: { id: userId } });
+
     const types = await prisma.botSubscription.upsert({
         where: {
             userId: userId,
@@ -76,5 +78,15 @@ export default async function handler(
         }
 
     });
+    if (user?.status === "NEW" && types.status === "SUBSCRIBED") {
+        await prisma.scheduleTask.create({
+            data: {
+                name: "New subscribed User",
+                entityType: "USER",
+                entityId: userId,
+                taskType: "INFORM_BOT_REALTIME",
+            },
+        });
+    }
     return res.status(200).json(types);
 }

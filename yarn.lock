@@ -2431,7 +2431,7 @@ prelude-ls@^1.2.1:
 
 "prisma-schema@git+https://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:x-oauth-basic@github.com/tr3butor-org/prisma-schema.git":
   version "1.0.3"
-  resolved "git+https://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:x-oauth-basic@github.com/tr3butor-org/prisma-schema.git#95176b5929117ae5d25d539897c71f597e4dcbbf"
+  resolved "git+https://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:x-oauth-basic@github.com/tr3butor-org/prisma-schema.git#a2239a60ec6c1076ea01e64d05604fc81037ea66"
   dependencies:
     "@prisma/client" "^4.5.0"
     "@types/node" "^18.8.4"

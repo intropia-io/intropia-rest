@@ -43,11 +43,11 @@ export default async function handler(
 
     const { userId, firstName, lastName, username, dynasty, questTypes, eventTypes, reffProgram, updateFrequency } = req.body;
 
-    const user = await prisma.botSubscription.findUnique({ where: { id: userId } });
+    const user = await prisma.botSubscription.findUnique({ where: { id: userId.toString() } });
 
     const types = await prisma.botSubscription.upsert({
         where: {
-            userId: userId,
+            userId: userId.toString(),
         },
         update: {
             firstName,
@@ -70,7 +70,7 @@ export default async function handler(
             status: "SUBSCRIBED"
         },
         create: {
-            userId,
+            userId: userId.toString(),
             firstName,
             lastName,
             username,
@@ -83,7 +83,7 @@ export default async function handler(
             data: {
                 name: "New subscribed User",
                 entityType: "USER",
-                entityId: userId,
+                entityId: userId.toString(),
                 taskType: "INFORM_BOT_REALTIME",
             },
         });

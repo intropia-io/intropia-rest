@@ -45,7 +45,7 @@ export default async function handler(
 
     const user = await prisma.botSubscription.update({
         where: {
-            userId: userId,
+            userId: userId.toString(),
         },
         data: {
             status

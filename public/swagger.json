@@ -702,6 +702,40 @@
         }
       }
     },
+    "/api/subscription/status-update": {
+      "post": {
+        "tags": [
+          "Bot Subscription"
+        ],
+        "description": "update subscription statys",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/BotSubscriptionPost"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "success result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/BotSubscription"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/type": {
       "get": {
         "tags": [

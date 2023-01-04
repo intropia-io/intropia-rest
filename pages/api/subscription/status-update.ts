@@ -1,9 +1,9 @@
 /**
  * @swagger
- * /api/subscription/create:
+ * /api/subscription/status-update:
  *   post:
  *     tags: [Bot Subscription]
- *     description: create new subscription
+ *     description: update subscription statys
  *     requestBody:
  *          content:
  *              application/json:
@@ -41,40 +41,16 @@ export default async function handler(
 
 
 
-    const { userId, firstName, lastName, username, dynasty, questTypes, eventTypes, reffProgram, updateFrequency } = req.body;
+    const { userId, status } = req.body;
 
-    const types = await prisma.botSubscription.upsert({
+    const user = await prisma.botSubscription.update({
         where: {
             userId: userId,
         },
-        update: {
-            firstName,
-            lastName,
-            username,
-            dynasties: {
-                set: [],
-                connect: (dynasty && dynasty.length > 0) ? dynasty.map((dynasty: string) => ({ id: dynasty })) : []
-            },
-            questTypes: {
-                set: [],
-                connect: (questTypes && questTypes.length > 0) ? questTypes.map((questType: string) => ({ id: questType })) : []
-            },
-            eventTypes: {
-                set: [],
-                connect: (eventTypes && eventTypes.length > 0) ? eventTypes.map((eventType: string) => ({ id: eventType })) : []
-            },
-            reffProgram,
-            updateFrequency,
-            status: "SUBSCRIBED"
-        },
-        create: {
-            userId,
-            firstName,
-            lastName,
-            username,
-            status: "NEW"
+        data: {
+            status
         }
 
     });
-    return res.status(200).json(types);
+    return res.status(200).json(user);
 }

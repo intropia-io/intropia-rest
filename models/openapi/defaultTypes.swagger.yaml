@@ -41,3 +41,11 @@ components:
         - OUTHOUSE
       title: RestUserType
       type: string
+    BotUserStatus:
+      enum:
+        - NEW
+        - SUBSCRIBED
+        - UNSUBSCRIBED
+        - DELETED
+      title: BotUserStatus
+      type: string

@@ -9,7 +9,7 @@
  *              application/json:
  *                  schema:
  *                      type: object
- *                      $ref: '#/components/schemas/BotSubscriptionPost'
+ *                      $ref: '#/components/schemas/BotSubscriptionStatusPost'
  *     responses:
  *       200:
  *         description: success result

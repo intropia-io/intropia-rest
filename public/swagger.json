@@ -395,6 +395,25 @@
         "title": "BotSubscriptionPost",
         "type": "object"
       },
+      "BotSubscriptionStatusPost": {
+        "properties": {
+          "userId": {
+            "title": "BotSubscriptionStatusPost.userId",
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/BotUserStatus",
+            "title": "BotSubscriptionStatusPost.status"
+          }
+        },
+        "required": [
+          "userId",
+          "status"
+        ],
+        "additionalProperties": false,
+        "title": "BotSubscriptionStatusPost",
+        "type": "object"
+      },
       "CategoryType": {
         "enum": [
           "INSTITUTE",
@@ -434,6 +453,16 @@
           "OUTHOUSE"
         ],
         "title": "RestUserType",
+        "type": "string"
+      },
+      "BotUserStatus": {
+        "enum": [
+          "NEW",
+          "SUBSCRIBED",
+          "UNSUBSCRIBED",
+          "DELETED"
+        ],
+        "title": "BotUserStatus",
         "type": "string"
       }
     }
@@ -713,7 +742,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "$ref": "#/components/schemas/BotSubscriptionPost"
+                "$ref": "#/components/schemas/BotSubscriptionStatusPost"
               }
             }
           }

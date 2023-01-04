@@ -5,3 +5,6 @@ export type ReffProgram = "SUBSCRIBED" | "UNSUBSCRIBED"
 export type UpdateFrequency = "WEEKLY" | "REALTIME"
 
 export type RestUserType = "INHOUSE" | "OUTHOUSE"
+
+
+export type BotUserStatus = "NEW" | "SUBSCRIBED" | "UNSUBSCRIBED" | "DELETED"

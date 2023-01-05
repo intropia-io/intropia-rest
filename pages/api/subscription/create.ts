@@ -43,7 +43,7 @@ export default async function handler(
 
     const { userId, firstName, lastName, username, dynasty, questTypes, eventTypes, reffProgram, updateFrequency } = req.body;
 
-    const user = await prisma.botSubscription.findUnique({ where: { id: userId.toString() } });
+    const user = await prisma.botSubscription.findUnique({ where: { userId: userId.toString() } });
 
     const types = await prisma.botSubscription.upsert({
         where: {

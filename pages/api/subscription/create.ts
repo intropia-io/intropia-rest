@@ -79,14 +79,22 @@ export default async function handler(
 
     });
     if (user?.status === "NEW" && types.status === "SUBSCRIBED") {
-        await prisma.scheduleTask.create({
-            data: {
-                name: "New subscribed User",
-                entityType: "USER",
+        const task = prisma.scheduleTask.findFirst({
+            where: {
                 entityId: userId.toString(),
-                taskType: "INFORM_BOT_REALTIME",
             },
         });
+
+        if (!task) {
+            await prisma.scheduleTask.create({
+                data: {
+                    name: "New subscribed User",
+                    entityType: "USER",
+                    entityId: userId.toString(),
+                    taskType: "INFORM_BOT_REALTIME",
+                },
+            });
+        }
     }
     return res.status(200).json(types);
 }

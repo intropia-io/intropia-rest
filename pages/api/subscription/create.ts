@@ -79,7 +79,7 @@ export default async function handler(
 
     });
     if (user?.status === "NEW" && types.status === "SUBSCRIBED") {
-        const task = prisma.scheduleTask.findFirst({
+        const task = await prisma.scheduleTask.findFirst({
             where: {
                 entityId: userId.toString(),
             },

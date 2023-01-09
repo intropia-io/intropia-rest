@@ -21,7 +21,7 @@
  *          updateFrequency: UpdateFrequency
  */
 
-import { ReffProgram, UpdateFrequency } from "./defaultTypes";
+import { BotUserStatus, ReffProgram, UpdateFrequency } from "./defaultTypes";
 import { Dynasty } from "./dynasty";
 import { Type } from "./type";
 
@@ -48,4 +48,9 @@ export interface BotSubscriptionPost {
     eventTypes: string[];
     reffProgram: ReffProgram;
     updateFrequency: UpdateFrequency;
+}
+
+export interface BotSubscriptionStatusPost {
+    userId: string;
+    status: BotUserStatus;
 }

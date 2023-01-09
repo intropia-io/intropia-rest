@@ -43,9 +43,11 @@ export default async function handler(
 
     const { userId, firstName, lastName, username, dynasty, questTypes, eventTypes, reffProgram, updateFrequency } = req.body;
 
+    const user = await prisma.botSubscription.findUnique({ where: { userId: userId.toString() } });
+
     const types = await prisma.botSubscription.upsert({
         where: {
-            userId: userId,
+            userId: userId.toString(),
         },
         update: {
             firstName,
@@ -64,26 +66,35 @@ export default async function handler(
                 connect: (eventTypes && eventTypes.length > 0) ? eventTypes.map((eventType: string) => ({ id: eventType })) : []
             },
             reffProgram,
-            updateFrequency
+            updateFrequency,
+            status: "SUBSCRIBED"
         },
         create: {
-            userId,
+            userId: userId.toString(),
             firstName,
             lastName,
             username,
-            dynasties: {
-                connect: (dynasty && dynasty.length > 0) ? dynasty.map((dynasty: string) => ({ id: dynasty })) : []
-            },
-            questTypes: {
-                connect: (questTypes && questTypes.length > 0) ? questTypes.map((questType: string) => ({ id: questType })) : []
-            },
-            eventTypes: {
-                connect: (eventTypes && eventTypes.length > 0) ? eventTypes.map((eventType: string) => ({ id: eventType })) : []
-            },
-            reffProgram,
-            updateFrequency
+            status: "NEW"
         }
 
     });
+    if (user?.status === "NEW" && types.status === "SUBSCRIBED") {
+        const task = await prisma.scheduleTask.findFirst({
+            where: {
+                entityId: userId.toString(),
+            },
+        });
+
+        if (!task) {
+            await prisma.scheduleTask.create({
+                data: {
+                    name: "New subscribed User",
+                    entityType: "USER",
+                    entityId: userId.toString(),
+                    taskType: "INFORM_BOT_REALTIME",
+                },
+            });
+        }
+    }
     return res.status(200).json(types);
 }

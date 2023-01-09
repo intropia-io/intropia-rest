@@ -395,6 +395,25 @@
         "title": "BotSubscriptionPost",
         "type": "object"
       },
+      "BotSubscriptionStatusPost": {
+        "properties": {
+          "userId": {
+            "title": "BotSubscriptionStatusPost.userId",
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/BotUserStatus",
+            "title": "BotSubscriptionStatusPost.status"
+          }
+        },
+        "required": [
+          "userId",
+          "status"
+        ],
+        "additionalProperties": false,
+        "title": "BotSubscriptionStatusPost",
+        "type": "object"
+      },
       "CategoryType": {
         "enum": [
           "INSTITUTE",
@@ -434,6 +453,16 @@
           "OUTHOUSE"
         ],
         "title": "RestUserType",
+        "type": "string"
+      },
+      "BotUserStatus": {
+        "enum": [
+          "NEW",
+          "SUBSCRIBED",
+          "UNSUBSCRIBED",
+          "DELETED"
+        ],
+        "title": "BotUserStatus",
         "type": "string"
       }
     }
@@ -680,6 +709,40 @@
               "schema": {
                 "type": "object",
                 "$ref": "#/components/schemas/BotSubscriptionPost"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "success result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/BotSubscription"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/subscription/status-update": {
+      "post": {
+        "tags": [
+          "Bot Subscription"
+        ],
+        "description": "update subscription statys",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/BotSubscriptionStatusPost"
               }
             }
           }

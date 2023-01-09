@@ -116,3 +116,17 @@ components:
       additionalProperties: false
       title: BotSubscriptionPost
       type: object
+    BotSubscriptionStatusPost:
+      properties:
+        userId:
+          title: BotSubscriptionStatusPost.userId
+          type: string
+        status:
+          $ref: '#/components/schemas/BotUserStatus'
+          title: BotSubscriptionStatusPost.status
+      required:
+        - userId
+        - status
+      additionalProperties: false
+      title: BotSubscriptionStatusPost
+      type: object

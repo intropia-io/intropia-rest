@@ -35,7 +35,7 @@
 
 import type { NextApiRequest, NextApiResponse } from "next";
 import { hasRights } from "../../prisma/hasRights";
-import prisma from "@intropia-io/prisma-schema/utilities/prisma";
+import { prisma } from "@intropia-io/prisma-schema";
 
 export default async function handler(
   req: NextApiRequest,

@@ -1,4 +1,4 @@
-import prisma from "@intropia-io/prisma-schema/utilities/prisma";
+import { prisma } from "@intropia-io/prisma-schema";
 import { RestUserType } from "@prisma/client";
 
 type Props = {

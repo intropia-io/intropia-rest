@@ -6,7 +6,7 @@
   "definition": {
     "openapi": "3.0.0",
     "info": {
-      "title": "t3butor rest api",
+      "title": "intropia rest api",
       "version": "1.0"
     },
     "components": {

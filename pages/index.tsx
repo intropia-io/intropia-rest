@@ -9,8 +9,8 @@ export default function Index() {
     return (
         <div>
             <Head>
-                <title>tr3butor REST api</title>
-                <meta name="description" content="rest API service for tr3butor"/>
+                <title>intropia REST api</title>
+                <meta name="description" content="rest API service for intropia"/>
                 <link rel="icon" href="/favicon.ico"/>
                 <link href="main.css" rel="stylesheet" />
             </Head>

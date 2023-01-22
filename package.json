@@ -1,6 +1,6 @@
 {
-  "name": "tr3butor-rest",
-  "version": "0.1.0",
+  "name": "intropia-rest",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -12,11 +12,11 @@
     "buildDoc": "yarn next-swagger-doc-cli next-swagger-doc.json"
   },
   "dependencies": {
+    "@intropia-io/prisma-schema": "1.0.6",
     "@prisma/client": "^4.5.0",
     "next": "12.3.1",
     "next-swagger-doc": "0.3.6",
     "next-transpile-modules": "^9.1.0",
-    "prisma-schema": "git+https://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:x-oauth-basic@github.com/tr3butor-org/prisma-schema.git",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "sass": "^1.55.0",
@@ -36,6 +36,6 @@
     "typescript": "4.8.4"
   },
   "prisma": {
-    "schema": "node_modules/prisma-schema/schema.prisma"
+    "schema": "node_modules/@intropia-io/prisma-schema/schema.prisma"
   }
 }

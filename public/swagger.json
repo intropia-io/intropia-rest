@@ -258,6 +258,36 @@
         "title": "Token",
         "description": "@swagger components:\r\n schemas:\r\n   Token:\r\n     type: object\r\n     properties:\r\n       name:\r\n         type: string\r\n       avatar:\r\n         type: string"
       },
+      "WhitelistSubscribes": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "id": "string",
+            "email": "string",
+            "createdAt": "string"
+          },
+          "id": {
+            "title": "WhitelistSubscribes.id",
+            "type": "number"
+          },
+          "email": {
+            "title": "WhitelistSubscribes.email",
+            "type": "string"
+          },
+          "createdAt": {
+            "title": "WhitelistSubscribes.createdAt",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "email",
+          "createdAt"
+        ],
+        "additionalProperties": false,
+        "title": "WhitelistSubscribes",
+        "description": "@swagger components:\r\n schemas:\r\n   WhitelistSubscribes:\r\n     type: object\r\n     properties:\r\n       name:\r\n         id: string\r\n         email: string\r\n         createdAt: string"
+      },
       "BotSubscription": {
         "properties": {
           "id": {
@@ -789,6 +819,64 @@
         }
       }
     },
+    "/api/whitelist": {
+      "get": {
+        "tags": [
+          "Whitelist Subscribes"
+        ],
+        "description": "Returns all whitelist subscribes",
+        "responses": {
+          "200": {
+            "description": "success result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/WhitelistSubscribes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/whitelist/create": {
+      "post": {
+        "tags": [
+          "Whitelist Subscribes"
+        ],
+        "description": "create new whitelist subscribe",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/WhitelistSubscribes"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "success result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/WhitelistSubscribes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "openapi": {
       "0": "3",
       "1": ".",
@@ -797,10 +885,10 @@
       "4": "0"
     },
     "info": {
-      "title": "Converted from type.swagger.yaml with typeconv",
+      "title": "Converted from whitelist.swagger.yaml with typeconv",
       "version": "1",
-      "x-id": "type.swagger.yaml",
-      "x-comment": "Generated from models\\type.ts by core-types-json-schema (https://github.com/grantila/core-types-json-schema) on behalf of typeconv (https://github.com/grantila/typeconv)"
+      "x-id": "whitelist.swagger.yaml",
+      "x-comment": "Generated from models\\whitelist.ts by core-types-json-schema (https://github.com/grantila/core-types-json-schema) on behalf of typeconv (https://github.com/grantila/typeconv)"
     }
   },
   "tags": []

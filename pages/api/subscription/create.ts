@@ -25,6 +25,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { hasRights } from "../../../prisma/hasRights";
 import { prisma } from "@intropia-io/prisma-schema";
+import { BotType } from "../../../models/defaultTypes";
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<any>
@@ -43,11 +44,21 @@ export default async function handler(
 
     const { userId, firstName, lastName, username, dynasty, questTypes, eventTypes, reffProgram, updateFrequency } = req.body;
 
-    const user = await prisma.botSubscription.findUnique({ where: { userId: userId.toString() } });
+    const user = await prisma.botSubscription.findUnique({
+        where: {
+            userId_bot: {
+                userId: userId.toString(),
+                bot: process.env.NEXT_PUBLIC_BOT_TYPE as BotType
+            }
+        }
+    });
 
     const types = await prisma.botSubscription.upsert({
         where: {
-            userId: userId.toString(),
+            userId_bot: {
+                userId: userId.toString(),
+                bot: process.env.NEXT_PUBLIC_BOT_TYPE as BotType
+            }
         },
         update: {
             firstName,
@@ -67,14 +78,15 @@ export default async function handler(
             },
             reffProgram,
             updateFrequency,
-            status: "SUBSCRIBED"
+            status: "SUBSCRIBED",
         },
         create: {
             userId: userId.toString(),
             firstName,
             lastName,
             username,
-            status: "NEW"
+            status: "NEW",
+            bot: process.env.NEXT_PUBLIC_BOT_TYPE as BotType
         }
 
     });

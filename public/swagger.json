@@ -341,6 +341,10 @@
           "updateFrequency": {
             "$ref": "#/components/schemas/UpdateFrequency",
             "title": "BotSubscription.updateFrequency"
+          },
+          "bot": {
+            "$ref": "#/components/schemas/BotType",
+            "title": "BotSubscription.bot"
           }
         },
         "required": [
@@ -353,7 +357,8 @@
           "questTypes",
           "eventTypes",
           "reffProgram",
-          "updateFrequency"
+          "updateFrequency",
+          "bot"
         ],
         "additionalProperties": false,
         "title": "BotSubscription",
@@ -408,6 +413,10 @@
           "updateFrequency": {
             "$ref": "#/components/schemas/UpdateFrequency",
             "title": "BotSubscriptionPost.updateFrequency"
+          },
+          "bot": {
+            "$ref": "#/components/schemas/BotType",
+            "title": "BotSubscriptionPost.bot"
           }
         },
         "required": [
@@ -419,7 +428,8 @@
           "questTypes",
           "eventTypes",
           "reffProgram",
-          "updateFrequency"
+          "updateFrequency",
+          "bot"
         ],
         "additionalProperties": false,
         "title": "BotSubscriptionPost",
@@ -483,6 +493,14 @@
           "OUTHOUSE"
         ],
         "title": "RestUserType",
+        "type": "string"
+      },
+      "BotType": {
+        "enum": [
+          "tr3butor",
+          "intropia"
+        ],
+        "title": "BotType",
         "type": "string"
       },
       "BotUserStatus": {

@@ -25,6 +25,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { hasRights } from "../../../prisma/hasRights";
 import { prisma } from "@intropia-io/prisma-schema";
+import { BotType } from "../../../models/defaultTypes";
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<any>
@@ -52,10 +53,14 @@ export default async function handler(
             questTypes: true,
             eventTypes: true,
             reffProgram: true,
-            updateFrequency: true
+            updateFrequency: true,
+            bot: true
         },
         where: {
-            userId: userId.toString(),
+            userId_bot: {
+                userId: userId.toString(),
+                bot: process.env.NEXT_PUBLIC_BOT_TYPE as BotType
+            }
         }
     });
     return res.status(200).json(user);

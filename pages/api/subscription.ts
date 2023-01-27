@@ -19,6 +19,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { hasRights } from "../../prisma/hasRights";
 import { prisma } from "@intropia-io/prisma-schema";
+import { BotType } from "../../models/defaultTypes";
 
 
 export default async function handler(
@@ -35,6 +36,9 @@ export default async function handler(
     return res.status(400).json({ error: "auth not correct" });
 
   const types = await prisma.botSubscription.findMany({
+    where: {
+      bot: process.env.NEXT_PUBLIC_BOT_TYPE as BotType,
+    },
     orderBy: [
       {
         createdAt: "asc",

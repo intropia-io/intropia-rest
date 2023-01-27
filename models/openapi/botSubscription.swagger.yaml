@@ -51,6 +51,9 @@ components:
         updateFrequency:
           $ref: '#/components/schemas/UpdateFrequency'
           title: BotSubscription.updateFrequency
+        bot:
+          $ref: '#/components/schemas/BotType'
+          title: BotSubscription.bot
       required:
         - id
         - userId
@@ -62,6 +65,7 @@ components:
         - eventTypes
         - reffProgram
         - updateFrequency
+        - bot
       additionalProperties: false
       title: BotSubscription
       type: object
@@ -103,6 +107,9 @@ components:
         updateFrequency:
           $ref: '#/components/schemas/UpdateFrequency'
           title: BotSubscriptionPost.updateFrequency
+        bot:
+          $ref: '#/components/schemas/BotType'
+          title: BotSubscriptionPost.bot
       required:
         - userId
         - fisrtName
@@ -113,6 +120,7 @@ components:
         - eventTypes
         - reffProgram
         - updateFrequency
+        - bot
       additionalProperties: false
       title: BotSubscriptionPost
       type: object

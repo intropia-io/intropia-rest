@@ -41,6 +41,12 @@ components:
         - OUTHOUSE
       title: RestUserType
       type: string
+    BotType:
+      enum:
+        - tr3butor
+        - intropia
+      title: BotType
+      type: string
     BotUserStatus:
       enum:
         - NEW

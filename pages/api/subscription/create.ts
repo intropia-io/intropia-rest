@@ -25,6 +25,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { hasRights } from "../../../prisma/hasRights";
 import { prisma } from "@intropia-io/prisma-schema";
+import { BotType } from "../../../models/defaultTypes";
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<any>
@@ -67,14 +68,15 @@ export default async function handler(
             },
             reffProgram,
             updateFrequency,
-            status: "SUBSCRIBED"
+            status: "SUBSCRIBED",
         },
         create: {
             userId: userId.toString(),
             firstName,
             lastName,
             username,
-            status: "NEW"
+            status: "NEW",
+            bot: process.env.NEXT_PUBLIC_BOT_TYPE as BotType
         }
 
     });

@@ -52,7 +52,8 @@ export default async function handler(
             questTypes: true,
             eventTypes: true,
             reffProgram: true,
-            updateFrequency: true
+            updateFrequency: true,
+            bot: true
         },
         where: {
             userId: userId.toString(),

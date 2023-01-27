@@ -57,6 +57,7 @@ export default async function handler(
         },
         where: {
             userId: userId.toString(),
+            bot: "tr3butor"
         }
     });
     return res.status(200).json(user);

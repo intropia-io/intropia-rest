@@ -34,9 +34,6 @@ export default async function handler(
       description: true,
       avatar: true,
     },
-    where: {
-      published: true
-    },
     orderBy: [
       {
         name: "asc",

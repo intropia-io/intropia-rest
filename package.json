@@ -11,7 +11,7 @@
     "buildDoc": "yarn next-swagger-doc-cli next-swagger-doc.json"
   },
   "dependencies": {
-    "@intropia-io/prisma-schema": "1.0.3",
+    "@intropia-io/prisma-schema": "1.0.4",
     "@prisma/client": "^4.5.0",
     "next": "12.3.1",
     "next-swagger-doc": "0.3.6",

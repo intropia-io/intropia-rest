@@ -1,0 +1,47 @@
+openapi: 3.0.0
+info:
+  title: Converted from refLink.swagger.yaml with typeconv
+  version: '1'
+  x-id: refLink.swagger.yaml
+  x-comment: >-
+    Generated from models\refLink.ts by core-types-json-schema
+    (https://github.com/grantila/core-types-json-schema) on behalf of typeconv
+    (https://github.com/grantila/typeconv)
+paths: {}
+components:
+  schemas:
+    RefLink:
+      properties:
+        id:
+          title: RefLink.id
+          type: string
+        shortId:
+          title: RefLink.shortId
+          type: string
+        questId:
+          title: RefLink.questId
+          type: string
+        createdById:
+          title: RefLink.createdById
+          type: string
+        refAccountId:
+          title: RefLink.refAccountId
+          type: string
+        createdAt:
+          title: RefLink.createdAt
+          type: string
+        updatedAt:
+          title: RefLink.updatedAt
+          type: string
+      required:
+        - id
+        - shortId
+        - questId
+        - createdById
+        - refAccountId
+        - createdAt
+        - updatedAt
+      additionalProperties: false
+      title: RefLink
+      description: "@swagger components:\r\n schemas:\r\n   RefLink:\r\n     type: object\r\n     properties:\r\n       name:\r\n         id: string\r\n         shortId: string\r\n         questId: string\r\n         createdById: string\r\n         refAccountId: string\r\n         createdAt: string\r\n         updatedAt: string"
+      type: object

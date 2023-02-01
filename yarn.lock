@@ -109,10 +109,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@intropia-io/prisma-schema@1.0.4":
-  version "1.0.4"
-  resolved "https://npm.pkg.github.com/download/@intropia-io/prisma-schema/1.0.4/046dd59b6b704620491913cd106608240c9e8141#046dd59b6b704620491913cd106608240c9e8141"
-  integrity sha512-oZqTtQGuBVARt6oamnWaOBheg9RjLnxD6ur9zqIDF3MGTPY++xbYVG9hiyBv+xvU7gP0cddBvZvSTfEgLkvNAQ==
+"@intropia-io/prisma-schema@1.0.5":
+  version "1.0.5"
+  resolved "https://npm.pkg.github.com/download/@intropia-io/prisma-schema/1.0.5/137a1a5e843b054bae4d509304bbdd478ea1cc49#137a1a5e843b054bae4d509304bbdd478ea1cc49"
+  integrity sha512-+ZIb3BChZb3I/J8Z7mkEk4ErhERE0t+i6Nya1tjH0ix0y9mZLwuM49Is2LrsHYzK1q89wbT98yva+oTRcNmQRQ==
   dependencies:
     "@prisma/client" "^4.9.0"
     "@types/node" "^18.11.18"

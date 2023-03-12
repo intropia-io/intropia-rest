@@ -1,0 +1,31 @@
+openapi: 3.0.0
+info:
+  title: Converted from apply.swagger.yaml with typeconv
+  version: '1'
+  x-id: apply.swagger.yaml
+  x-comment: >-
+    Generated from models\apply.ts by core-types-json-schema
+    (https://github.com/grantila/core-types-json-schema) on behalf of typeconv
+    (https://github.com/grantila/typeconv)
+paths: {}
+components:
+  schemas:
+    Apply:
+      properties:
+        id:
+          title: Apply.id
+          type: string
+        createdAt:
+          title: Apply.createdAt
+          type: string
+        updatedAt:
+          title: Apply.updatedAt
+          type: string
+      required:
+        - id
+        - createdAt
+        - updatedAt
+      additionalProperties: false
+      title: Apply
+      description: "@swagger components:\r\n schemas:\r\n   Apply:\r\n     type: object\r\n     properties:\r\n       id:\r\n         type: string\r\n         format: cuid\r\n       contactEmail:\r\n         type: string\r\n       createdAt:\r\n         type: string\r\n       updatedAt:\r\n         type: string"
+      type: object

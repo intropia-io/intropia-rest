@@ -20,6 +20,31 @@
             "format": "cuid",
             "title": "Apply.id"
           },
+          "link": {
+            "type": "object",
+            "$ref": "#/components/schemas/RefLink",
+            "title": "Apply.link"
+          },
+          "quest": {
+            "type": "object",
+            "$ref": "#/components/schemas/Quest",
+            "title": "Apply.quest"
+          },
+          "user": {
+            "type": "object",
+            "$ref": "#/components/schemas/User",
+            "title": "Apply.user"
+          },
+          "cv": {
+            "type": "object",
+            "$ref": "#/components/schemas/ApplyCV",
+            "title": "Apply.cv"
+          },
+          "status": {
+            "type": "string",
+            "$ref": "#/components/schemas/ApplyStatus",
+            "title": "Apply.status"
+          },
           "contactEmail": {
             "type": "string"
           },
@@ -34,12 +59,34 @@
         },
         "required": [
           "id",
+          "link",
+          "quest",
+          "user",
+          "cv",
           "createdAt",
-          "updatedAt"
+          "updatedAt",
+          "status"
         ],
         "additionalProperties": false,
-        "title": "Apply",
-        "description": "@swagger components:\r\n schemas:\r\n   Apply:\r\n     type: object\r\n     properties:\r\n       id:\r\n         type: string\r\n         format: cuid\r\n       contactEmail:\r\n         type: string\r\n       createdAt:\r\n         type: string\r\n       updatedAt:\r\n         type: string"
+        "title": "Apply"
+      },
+      "Cv": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "cuid"
+          },
+          "text": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        }
       },
       "Type": {
         "type": "object",
@@ -137,15 +184,105 @@
         "title": "Dynasty",
         "description": "@swagger components:\r\n schemas:\r\n   Dynasty:\r\n     type: object\r\n     properties:\r\n       name:\r\n         id: string\r\n         type: string\r\n         description: string\r\n         avatar: string"
       },
+      "RefAccount": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "id": "string",
+            "adminUser": "User",
+            "avatar": "string",
+            "title": "string",
+            "description": "string",
+            "users": "User[]",
+            "defaultRefAccount": "User[]",
+            "refLink": "RefLink[]",
+            "type": "RefAccountType",
+            "createdAt": "string",
+            "updatedAt": "string"
+          },
+          "id": {
+            "title": "RefAccount.id",
+            "type": "string"
+          },
+          "adminUser": {
+            "$ref": "#/components/schemas/User",
+            "title": "RefAccount.adminUser"
+          },
+          "avatar": {
+            "title": "RefAccount.avatar",
+            "type": "string"
+          },
+          "title": {
+            "title": "RefAccount.title",
+            "type": "string"
+          },
+          "description": {
+            "title": "RefAccount.description",
+            "type": "string"
+          },
+          "users": {
+            "items": {
+              "$ref": "#/components/schemas/User",
+              "title": "RefAccount.users.[]"
+            },
+            "title": "RefAccount.users",
+            "type": "array"
+          },
+          "defaultRefAccount": {
+            "items": {
+              "$ref": "#/components/schemas/User",
+              "title": "RefAccount.defaultRefAccount.[]"
+            },
+            "title": "RefAccount.defaultRefAccount",
+            "type": "array"
+          },
+          "refLink": {
+            "items": {
+              "$ref": "#/components/schemas/RefLink",
+              "title": "RefAccount.refLink.[]"
+            },
+            "title": "RefAccount.refLink",
+            "type": "array"
+          },
+          "type": {
+            "$ref": "#/components/schemas/RefAccountType",
+            "title": "RefAccount.type"
+          },
+          "createdAt": {
+            "title": "RefAccount.createdAt",
+            "type": "string"
+          },
+          "updatedAt": {
+            "title": "RefAccount.updatedAt",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "adminUser",
+          "avatar",
+          "title",
+          "description",
+          "users",
+          "defaultRefAccount",
+          "refLink",
+          "type",
+          "createdAt",
+          "updatedAt"
+        ],
+        "additionalProperties": false,
+        "title": "RefAccount"
+      },
       "RefLink": {
         "type": "object",
         "properties": {
           "name": {
             "id": "string",
             "shortId": "string",
-            "questId": "string",
-            "createdById": "string",
-            "refAccountId": "string",
+            "quests": "Quest",
+            "refUserApply": "Apply[]",
+            "createdBy": "User",
+            "refAccount": "RefAccount",
             "createdAt": "string",
             "updatedAt": "string"
           },
@@ -157,17 +294,29 @@
             "title": "RefLink.shortId",
             "type": "string"
           },
-          "questId": {
-            "title": "RefLink.questId",
-            "type": "string"
+          "quests": {
+            "$ref": "#/components/schemas/Quest",
+            "title": "RefLink.quests"
           },
-          "createdById": {
-            "title": "RefLink.createdById",
-            "type": "string"
+          "refUserApply": {
+            "items": {
+              "$ref": "#/components/schemas/Apply",
+              "title": "RefLink.refUserApply.[]"
+            },
+            "title": "RefLink.refUserApply",
+            "type": "array"
+          },
+          "createdBy": {
+            "$ref": "#/components/schemas/User",
+            "title": "RefLink.createdBy"
           },
           "refAccountId": {
             "title": "RefLink.refAccountId",
             "type": "string"
+          },
+          "refAccount": {
+            "$ref": "#/components/schemas/RefAccount",
+            "title": "RefLink.refAccount"
           },
           "createdAt": {
             "title": "RefLink.createdAt",
@@ -181,15 +330,16 @@
         "required": [
           "id",
           "shortId",
-          "questId",
-          "createdById",
+          "quests",
+          "refUserApply",
+          "createdBy",
           "refAccountId",
+          "refAccount",
           "createdAt",
           "updatedAt"
         ],
         "additionalProperties": false,
-        "title": "RefLink",
-        "description": "@swagger components:\r\n schemas:\r\n   RefLink:\r\n     type: object\r\n     properties:\r\n       name:\r\n         id: string\r\n         shortId: string\r\n         questId: string\r\n         createdById: string\r\n         refAccountId: string\r\n         createdAt: string\r\n         updatedAt: string"
+        "title": "RefLink"
       },
       "Tag": {
         "type": "object",
@@ -256,6 +406,44 @@
         "additionalProperties": false,
         "title": "WhitelistSubscribes",
         "description": "@swagger components:\r\n schemas:\r\n   WhitelistSubscribes:\r\n     type: object\r\n     properties:\r\n       name:\r\n         id: string\r\n         email: string\r\n         createdAt: string"
+      },
+      "ApplyCV": {
+        "properties": {
+          "id": {
+            "title": "ApplyCV.id",
+            "type": "string"
+          },
+          "text": {
+            "title": "ApplyCV.text",
+            "type": "string"
+          },
+          "createdAt": {
+            "title": "ApplyCV.createdAt",
+            "type": "string"
+          },
+          "updatedAt": {
+            "title": "ApplyCV.updatedAt",
+            "type": "string"
+          },
+          "apply": {
+            "items": {
+              "$ref": "#/components/schemas/Apply",
+              "title": "ApplyCV.apply.[]"
+            },
+            "title": "ApplyCV.apply",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "text",
+          "createdAt",
+          "updatedAt",
+          "apply"
+        ],
+        "additionalProperties": false,
+        "title": "ApplyCV",
+        "type": "object"
       },
       "BotSubscription": {
         "properties": {
@@ -489,6 +677,29 @@
           "DELETED"
         ],
         "title": "EntityStates",
+        "type": "string"
+      },
+      "ApplyStatus": {
+        "enum": [
+          "NEW",
+          "VERIFIED",
+          "INVITE",
+          "SENT_OFFER",
+          "GET_OFFER",
+          "DECLINED_OFFER",
+          "TEST_PERIOD",
+          "APPROVED",
+          "DECLINED"
+        ],
+        "title": "ApplyStatus",
+        "type": "string"
+      },
+      "RefAccountType": {
+        "enum": [
+          "PERSONAL",
+          "COMMUNITY"
+        ],
+        "title": "RefAccountType",
         "type": "string"
       },
       "Institute": {
@@ -953,6 +1164,42 @@
             "title": "User.publicAddress",
             "type": "string"
           },
+          "adminUser": {
+            "items": {
+              "$ref": "#/components/schemas/RefAccount",
+              "title": "User.adminUser.[]"
+            },
+            "title": "User.adminUser",
+            "type": "array"
+          },
+          "defaultRefAccount": {
+            "$ref": "#/components/schemas/RefAccount",
+            "title": "User.defaultRefAccount"
+          },
+          "apply": {
+            "items": {
+              "$ref": "#/components/schemas/Apply",
+              "title": "User.apply.[]"
+            },
+            "title": "User.apply",
+            "type": "array"
+          },
+          "refLink": {
+            "items": {
+              "$ref": "#/components/schemas/RefLink",
+              "title": "User.refLink.[]"
+            },
+            "title": "User.refLink",
+            "type": "array"
+          },
+          "refAccount": {
+            "items": {
+              "$ref": "#/components/schemas/RefAccount",
+              "title": "User.refAccount.[]"
+            },
+            "title": "User.refAccount",
+            "type": "array"
+          },
           "firstSignIn": {
             "title": "User.firstSignIn",
             "type": "boolean"
@@ -985,6 +1232,11 @@
           "telegram",
           "dynasty",
           "publicAddress",
+          "adminUser",
+          "defaultRefAccount",
+          "apply",
+          "refLink",
+          "refAccount",
           "firstSignIn",
           "optIn",
           "createdAt",
@@ -1002,6 +1254,61 @@
     }
   ],
   "paths": {
+    "/api/apply": {
+      "get": {
+        "tags": [
+          "Apply"
+        ],
+        "description": "Returns all apply",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "description": "take filter by organizationId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "take",
+            "description": "take number of rows (default 100)",
+            "in": "query",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "skip",
+            "description": "how many rows to skip (default 0)",
+            "in": "query",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "sort",
+            "description": "desc or asc",
+            "in": "query",
+            "default": "desc",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Apply"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/dynasty": {
       "get": {
         "tags": [

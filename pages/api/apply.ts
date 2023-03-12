@@ -1,11 +1,16 @@
 /**
  * @swagger
- * /api/users:
+ * /api/apply:
  *   get:
- *     tags: [Users]
- *     description: Returns all users
+ *     tags: [Apply]
+ *     description: Returns all apply
  *     parameters:
- *       - name: take
+ *       - name: organizationId
+ *         description: take filter by organizationId
+ *         in: query
+ *         required: false
+ *         type: string
+*       - name: take
  *         description: take number of rows (default 100)
  *         in: query
  *         required: false
@@ -30,7 +35,7 @@
  *               type: array
  *               items:
  *                 type: object
- *                 $ref: '#/components/schemas/User'
+ *                 $ref: '#/components/schemas/Apply'
  */
 
 import type { NextApiRequest, NextApiResponse } from "next";
@@ -51,35 +56,53 @@ export default async function handler(
     return res.status(400).json({ error: "auth not correct" });
 
   const {
-    query: { take, skip, sort }
+    query: { take, skip, sort, organizationId }
   } = req;
-  const users = await prisma.user.findMany({
+  const apply = await prisma.apply.findMany({
     take: take ? parseInt(take.toString()) : 100,
     skip: skip ? parseInt(skip.toString()) : undefined,
     select: {
       id: true,
-      username: true,
-      contactEmail: true,
-      emailVerified: true,
-      image: true,
-      firstName: true,
-      lastName: true,
-      description: true,
-      resumeLink: true,
-      twitterLink: true,
-      githubLink: true,
-      telegram: true,
-      dynasty: true,
-      publicAddress: true,
-      adminUser: true,
-      defaultRefAccount: true,
-      apply: true,
-      refLink: true,
-      refAccount: true,
-      firstSignIn: true,
-      optIn: true,
+      link: true,
+      quest: true,
+      user: {
+        select: {
+          id: true,
+          username: true,
+          contactEmail: true,
+          emailVerified: true,
+          image: true,
+          firstName: true,
+          lastName: true,
+          description: true,
+          resumeLink: true,
+          twitterLink: true,
+          githubLink: true,
+          telegram: true,
+          dynasty: true,
+          publicAddress: true,
+          adminUser: true,
+          defaultRefAccount: true,
+          apply: true,
+          refLink: true,
+          refAccount: true,
+          firstSignIn: true,
+          optIn: true,
+          createdAt: true,
+          updatedAt: true,
+        }
+      },
+      cv: true,
       createdAt: true,
       updatedAt: true,
+      status: true,
+    },
+    where: {
+      quest: {
+        organization: {
+          id: organizationId?.toString() || undefined
+        }
+      }
     },
     orderBy: [
       {
@@ -87,5 +110,5 @@ export default async function handler(
       },
     ]
   });
-  return res.status(200).json(users);
+  return res.status(200).json(apply);
 }

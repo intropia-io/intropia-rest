@@ -57,6 +57,33 @@ components:
         publicAddress:
           title: User.publicAddress
           type: string
+        adminUser:
+          items:
+            $ref: '#/components/schemas/RefAccount'
+            title: User.adminUser.[]
+          title: User.adminUser
+          type: array
+        defaultRefAccount:
+          $ref: '#/components/schemas/RefAccount'
+          title: User.defaultRefAccount
+        apply:
+          items:
+            $ref: '#/components/schemas/Apply'
+            title: User.apply.[]
+          title: User.apply
+          type: array
+        refLink:
+          items:
+            $ref: '#/components/schemas/RefLink'
+            title: User.refLink.[]
+          title: User.refLink
+          type: array
+        refAccount:
+          items:
+            $ref: '#/components/schemas/RefAccount'
+            title: User.refAccount.[]
+          title: User.refAccount
+          type: array
         firstSignIn:
           title: User.firstSignIn
           type: boolean
@@ -84,6 +111,11 @@ components:
         - telegram
         - dynasty
         - publicAddress
+        - adminUser
+        - defaultRefAccount
+        - apply
+        - refLink
+        - refAccount
         - firstSignIn
         - optIn
         - createdAt

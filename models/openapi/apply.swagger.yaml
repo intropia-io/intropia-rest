@@ -15,17 +15,36 @@ components:
         id:
           title: Apply.id
           type: string
+        link:
+          $ref: '#/components/schemas/RefLink'
+          title: Apply.link
+        quest:
+          $ref: '#/components/schemas/Quest'
+          title: Apply.quest
+        user:
+          $ref: '#/components/schemas/User'
+          title: Apply.user
+        cv:
+          $ref: '#/components/schemas/ApplyCV'
+          title: Apply.cv
         createdAt:
           title: Apply.createdAt
           type: string
         updatedAt:
           title: Apply.updatedAt
           type: string
+        status:
+          $ref: '#/components/schemas/ApplyStatus'
+          title: Apply.status
       required:
         - id
+        - link
+        - quest
+        - user
+        - cv
         - createdAt
         - updatedAt
+        - status
       additionalProperties: false
       title: Apply
-      description: "@swagger components:\r\n schemas:\r\n   Apply:\r\n     type: object\r\n     properties:\r\n       id:\r\n         type: string\r\n         format: cuid\r\n       contactEmail:\r\n         type: string\r\n       createdAt:\r\n         type: string\r\n       updatedAt:\r\n         type: string"
       type: object

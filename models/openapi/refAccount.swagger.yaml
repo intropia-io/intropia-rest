@@ -1,0 +1,71 @@
+openapi: 3.0.0
+info:
+  title: Converted from refAccount.swagger.yaml with typeconv
+  version: '1'
+  x-id: refAccount.swagger.yaml
+  x-comment: >-
+    Generated from models\refAccount.ts by core-types-json-schema
+    (https://github.com/grantila/core-types-json-schema) on behalf of typeconv
+    (https://github.com/grantila/typeconv)
+paths: {}
+components:
+  schemas:
+    RefAccount:
+      properties:
+        id:
+          title: RefAccount.id
+          type: string
+        adminUser:
+          $ref: '#/components/schemas/User'
+          title: RefAccount.adminUser
+        avatar:
+          title: RefAccount.avatar
+          type: string
+        title:
+          title: RefAccount.title
+          type: string
+        description:
+          title: RefAccount.description
+          type: string
+        users:
+          items:
+            $ref: '#/components/schemas/User'
+            title: RefAccount.users.[]
+          title: RefAccount.users
+          type: array
+        defaultRefAccount:
+          items:
+            $ref: '#/components/schemas/User'
+            title: RefAccount.defaultRefAccount.[]
+          title: RefAccount.defaultRefAccount
+          type: array
+        refLink:
+          items:
+            $ref: '#/components/schemas/RefLink'
+            title: RefAccount.refLink.[]
+          title: RefAccount.refLink
+          type: array
+        type:
+          $ref: '#/components/schemas/RefAccountType'
+          title: RefAccount.type
+        createdAt:
+          title: RefAccount.createdAt
+          type: string
+        updatedAt:
+          title: RefAccount.updatedAt
+          type: string
+      required:
+        - id
+        - adminUser
+        - avatar
+        - title
+        - description
+        - users
+        - defaultRefAccount
+        - refLink
+        - type
+        - createdAt
+        - updatedAt
+      additionalProperties: false
+      title: RefAccount
+      type: object

@@ -1,0 +1,41 @@
+openapi: 3.0.0
+info:
+  title: Converted from applyCV.swagger.yaml with typeconv
+  version: '1'
+  x-id: applyCV.swagger.yaml
+  x-comment: >-
+    Generated from models\applyCV.ts by core-types-json-schema
+    (https://github.com/grantila/core-types-json-schema) on behalf of typeconv
+    (https://github.com/grantila/typeconv)
+paths: {}
+components:
+  schemas:
+    ApplyCV:
+      properties:
+        id:
+          title: ApplyCV.id
+          type: string
+        text:
+          title: ApplyCV.text
+          type: string
+        createdAt:
+          title: ApplyCV.createdAt
+          type: string
+        updatedAt:
+          title: ApplyCV.updatedAt
+          type: string
+        apply:
+          items:
+            $ref: '#/components/schemas/Apply'
+            title: ApplyCV.apply.[]
+          title: ApplyCV.apply
+          type: array
+      required:
+        - id
+        - text
+        - createdAt
+        - updatedAt
+        - apply
+      additionalProperties: false
+      title: ApplyCV
+      type: object

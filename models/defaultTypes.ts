@@ -11,3 +11,9 @@ export type BotType = "tr3butor" | "intropia"
 export type BotUserStatus = "NEW" | "SUBSCRIBED" | "UNSUBSCRIBED" | "DELETED"
 
 export type EntityStates = "PUBLISHED" | "DRAFT" | "DELETED"
+
+
+export type ApplyStatus = "NEW" | "VERIFIED" | "INVITE" | "SENT_OFFER" | "GET_OFFER" | "DECLINED_OFFER" | "TEST_PERIOD" | "APPROVED" | "DECLINED"
+
+
+export type RefAccountType = "PERSONAL" | "COMMUNITY"

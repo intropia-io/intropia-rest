@@ -44,7 +44,10 @@
  *          type: string
  */
 
+import { Apply } from "./apply";
 import { Dynasty } from "./dynasty"
+import { RefAccount } from "./refAccount";
+import { RefLink } from "./refLink";
 
 export interface User {
     id: string,
@@ -61,11 +64,11 @@ export interface User {
     telegram: string,
     dynasty: Dynasty[],
     publicAddress: string,
-    //adminUser:         RefAccount[],  
-    //defaultRefAccount: RefAccount,     
-    //apply:             Apply[],
-    //refLink           RefLink[],
-    //refAccount        RefAccount[],
+    adminUser: RefAccount[],
+    defaultRefAccount: RefAccount,
+    apply: Apply[],
+    refLink: RefLink[],
+    refAccount: RefAccount[],
     //experience        RewardExperience[],
     firstSignIn: boolean,
     optIn: boolean,

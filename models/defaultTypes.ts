@@ -9,3 +9,5 @@ export type BotType = "tr3butor" | "intropia"
 
 
 export type BotUserStatus = "NEW" | "SUBSCRIBED" | "UNSUBSCRIBED" | "DELETED"
+
+export type EntityStates = "PUBLISHED" | "DRAFT" | "DELETED"

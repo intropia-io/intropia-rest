@@ -44,7 +44,7 @@ export default async function handler(
   const {
     query: { },
   } = req;
-  const quests = await prisma.organizations.findFirst({
+  const quests = await prisma.organizations.findUnique({
     select: {
       id: true,
       name: true,
@@ -67,10 +67,10 @@ export default async function handler(
       linkDiscord: true,
       linkMedium: true,
       contractAddress: true,
+      state: true,
     },
     where: {
-      id: instituteId?.toString(),
-      state: "PUBLISHED",
+      id: instituteId?.toString()
     },
   });
   return res.status(200).json(quests);

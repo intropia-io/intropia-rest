@@ -108,169 +108,6 @@
         "title": "Dynasty",
         "description": "@swagger components:\r\n schemas:\r\n   Dynasty:\r\n     type: object\r\n     properties:\r\n       name:\r\n         id: string\r\n         type: string\r\n         description: string\r\n         avatar: string"
       },
-      "Institute": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "cuid",
-            "title": "Institute.id"
-          },
-          "name": {
-            "type": "string",
-            "title": "Institute.name"
-          },
-          "description": {
-            "type": "string",
-            "title": "Institute.description"
-          },
-          "avatar": {
-            "type": "string"
-          },
-          "cover": {
-            "type": "string"
-          },
-          "color": {
-            "type": "string"
-          },
-          "market": {
-            "type": "string"
-          },
-          "treasury": {
-            "type": "string"
-          },
-          "dateFounded": {
-            "type": "string"
-          },
-          "verified": {
-            "type": "boolean"
-          },
-          "textBlocks": {
-            "type": "string"
-          },
-          "tags": {
-            "type": "array"
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
-          },
-          "linkWebsite": {
-            "type": "string",
-            "title": "Institute.linkWebsite"
-          },
-          "linkTelegram": {
-            "type": "string",
-            "title": "Institute.linkTelegram"
-          },
-          "linkTwitter": {
-            "type": "string",
-            "title": "Institute.linkTwitter"
-          },
-          "linkReddit": {
-            "type": "string",
-            "title": "Institute.linkReddit"
-          },
-          "linkDiscord": {
-            "type": "string",
-            "title": "Institute.linkDiscord"
-          },
-          "linkMedium": {
-            "type": "string",
-            "title": "Institute.linkMedium"
-          },
-          "contractAddress": {
-            "type": "string",
-            "title": "Institute.contractAddress"
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "description",
-          "linkWebsite",
-          "linkTelegram",
-          "linkTwitter",
-          "linkReddit",
-          "linkDiscord",
-          "linkMedium",
-          "contractAddress"
-        ],
-        "additionalProperties": false,
-        "title": "Institute",
-        "description": "@swagger components:\r\n schemas:\r\n   Institute:\r\n     type: object\r\n     properties:\r\n       id:\r\n         type: string\r\n         format: cuid\r\n       name:\r\n         type: string\r\n       description:\r\n         type: string\r\n       linkWebsite:\r\n         type: string\r\n       linkTelegram:\r\n         type: string\r\n       linkTwitter:\r\n         type: string\r\n       linkReddit:\r\n         type: string\r\n       linkDiscord:\r\n         type: string\r\n       linkMedium:\r\n         type: string\r\n       contractAddress:\r\n         type: string"
-      },
-      "Quest": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "cuid",
-            "title": "Quest.id"
-          },
-          "title": {
-            "type": "string",
-            "title": "Quest.title"
-          },
-          "description": {
-            "type": "string",
-            "title": "Quest.description"
-          },
-          "dynasty": {
-            "$ref": "#/components/schemas/Dynasty",
-            "title": "Quest.dynasty"
-          },
-          "token": {
-            "$ref": "#/components/schemas/Token",
-            "title": "Quest.token"
-          },
-          "type": {
-            "$ref": "#/components/schemas/Type",
-            "title": "Quest.type"
-          },
-          "linkApply": {
-            "type": "string",
-            "title": "Quest.linkApply"
-          },
-          "rewardFrom": {
-            "type": "number",
-            "title": "Quest.rewardFrom"
-          },
-          "rewardTo": {
-            "type": "number",
-            "title": "Quest.rewardTo"
-          },
-          "textBlocks": {
-            "type": "string",
-            "title": "Quest.textBlocks"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Quest.updatedAt"
-          },
-          "organization": {
-            "$ref": "#/components/schemas/Institute",
-            "title": "Quest.organization"
-          }
-        },
-        "required": [
-          "id",
-          "title",
-          "description",
-          "dynasty",
-          "token",
-          "type",
-          "linkApply",
-          "textBlocks",
-          "updatedAt",
-          "organization"
-        ],
-        "additionalProperties": false,
-        "title": "Quest"
-      },
       "RefLink": {
         "type": "object",
         "properties": {
@@ -345,26 +182,6 @@
             "type": "string"
           }
         }
-      },
-      "Token": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "title": "Token.name"
-          },
-          "avatar": {
-            "type": "string",
-            "title": "Token.avatar"
-          }
-        },
-        "required": [
-          "name",
-          "avatar"
-        ],
-        "additionalProperties": false,
-        "title": "Token",
-        "description": "@swagger components:\r\n schemas:\r\n   Token:\r\n     type: object\r\n     properties:\r\n       name:\r\n         type: string\r\n       avatar:\r\n         type: string"
       },
       "WhitelistSubscribes": {
         "type": "object",
@@ -620,6 +437,153 @@
         ],
         "title": "BotUserStatus",
         "type": "string"
+      },
+      "Institute": {
+        "properties": {
+          "id": {
+            "title": "Institute.id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Institute.name",
+            "type": "string"
+          },
+          "description": {
+            "title": "Institute.description",
+            "type": "string"
+          },
+          "linkWebsite": {
+            "title": "Institute.linkWebsite",
+            "type": "string"
+          },
+          "linkTelegram": {
+            "title": "Institute.linkTelegram",
+            "type": "string"
+          },
+          "linkTwitter": {
+            "title": "Institute.linkTwitter",
+            "type": "string"
+          },
+          "linkReddit": {
+            "title": "Institute.linkReddit",
+            "type": "string"
+          },
+          "linkDiscord": {
+            "title": "Institute.linkDiscord",
+            "type": "string"
+          },
+          "linkMedium": {
+            "title": "Institute.linkMedium",
+            "type": "string"
+          },
+          "contractAddress": {
+            "title": "Institute.contractAddress",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "description",
+          "linkWebsite",
+          "linkTelegram",
+          "linkTwitter",
+          "linkReddit",
+          "linkDiscord",
+          "linkMedium",
+          "contractAddress"
+        ],
+        "additionalProperties": false,
+        "title": "Institute",
+        "description": "@swagger components:\r\n schemas:\r\n   Institute:\r\n     type: object\r\n     properties:\r\n       id:\r\n         type: string\r\n         format: cuid\r\n       name:\r\n         type: string\r\n       description:\r\n         type: string\r\n       linkWebsite:\r\n         type: string\r\n       linkTelegram:\r\n         type: string\r\n       linkTwitter:\r\n         type: string\r\n       linkReddit:\r\n         type: string\r\n       linkDiscord:\r\n         type: string\r\n       linkMedium:\r\n         type: string\r\n       contractAddress:\r\n         type: string",
+        "type": "object"
+      },
+      "Quest": {
+        "properties": {
+          "id": {
+            "title": "Quest.id",
+            "type": "string"
+          },
+          "title": {
+            "title": "Quest.title",
+            "type": "string"
+          },
+          "description": {
+            "title": "Quest.description",
+            "type": "string"
+          },
+          "dynasty": {
+            "$ref": "#/components/schemas/Dynasty",
+            "title": "Quest.dynasty"
+          },
+          "token": {
+            "$ref": "#/components/schemas/Token",
+            "title": "Quest.token"
+          },
+          "type": {
+            "$ref": "#/components/schemas/Type",
+            "title": "Quest.type"
+          },
+          "linkApply": {
+            "title": "Quest.linkApply",
+            "type": "string"
+          },
+          "rewardFrom": {
+            "title": "Quest.rewardFrom",
+            "type": "number"
+          },
+          "rewardTo": {
+            "title": "Quest.rewardTo",
+            "type": "number"
+          },
+          "textBlocks": {
+            "title": "Quest.textBlocks",
+            "type": "string"
+          },
+          "updatedAt": {
+            "title": "Quest.updatedAt",
+            "type": "string"
+          },
+          "organization": {
+            "$ref": "#/components/schemas/Institute",
+            "title": "Quest.organization"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "description",
+          "dynasty",
+          "token",
+          "type",
+          "linkApply",
+          "textBlocks",
+          "updatedAt",
+          "organization"
+        ],
+        "additionalProperties": false,
+        "title": "Quest",
+        "type": "object"
+      },
+      "Token": {
+        "properties": {
+          "name": {
+            "title": "Token.name",
+            "type": "string"
+          },
+          "avatar": {
+            "title": "Token.avatar",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "avatar"
+        ],
+        "additionalProperties": false,
+        "title": "Token",
+        "description": "@swagger components:\r\n schemas:\r\n   Token:\r\n     type: object\r\n     properties:\r\n       name:\r\n         type: string\r\n       avatar:\r\n         type: string",
+        "type": "object"
       }
     }
   },

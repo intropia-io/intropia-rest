@@ -42,39 +42,26 @@ export default async function handler(
     if (!questId)
         return res.status(401).json({ error: "no questId" })
 
-    const quest = await prisma.quests.findFirst({
+    const quest = await prisma.quests.findUnique({
         select: {
             id: true,
             title: true,
             description: true,
-            dynasty: {
-                select: {
-                    name: true
-                }
-            },
-            token: {
-                select: {
-                    name: true,
-                    avatar: true
-                }
-            },
-            type: {
-                select: {
-                    name: true
-                }
-            },
+            dynasty: true,
+            token: true,
+            type: true,
             linkApply: true,
             rewardFrom: true,
             rewardTo: true,
             textBlocks: true,
+            createdAt: true,
             updatedAt: true,
-            organization: {
-                select: {
-                    contractAddress: true
-                }
-            }
+            organization: true,
+            state: true,
+            tokenReward: true,
+            tags: true,
         },
-        where: { id: questId?.toString(), state: "PUBLISHED", },
+        where: { id: questId?.toString() },
     })
     return res.status(200).json(quest)
 }

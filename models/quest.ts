@@ -31,12 +31,20 @@
  *          format: date-time
  *        organization:
  *          $ref: '#/components/schemas/Institute'
+ *       tags:
+ *          type: array
+ *       tokenReward:
+ *          $ref: '#/components/schemas/Token'
+ *       state:
+ *          type: string
  */
 
-import {Institute} from "./institute";
-import {Dynasty} from "./dynasty";
-import {Token} from "./token";
-import {Type} from "./type";
+import { Institute } from "./institute";
+import { Dynasty } from "./dynasty";
+import { Token } from "./token";
+import { Type } from "./type";
+import { Tag } from "./tag";
+import { EntityStates } from "./defaultTypes";
 
 export interface Quest {
     id: string;
@@ -49,6 +57,10 @@ export interface Quest {
     rewardFrom?: number;
     rewardTo?: number;
     textBlocks: string;
+    createdAt: string;
     updatedAt: string;
     organization: Institute
+    tags: Tag[]
+    tokenReward: Token
+    state: EntityStates
 }

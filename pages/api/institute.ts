@@ -78,9 +78,7 @@ export default async function handler(
       linkDiscord: true,
       linkMedium: true,
       contractAddress: true,
-    },
-    where: {
-      state: "PUBLISHED",
+      state: true,
     },
     orderBy: [
       {

@@ -70,37 +70,21 @@ export default async function handler(
             id: true,
             title: true,
             description: true,
-            dynasty: {
-                select: {
-                    name: true
-                }
-            },
-            token: {
-                select: {
-                    name: true,
-                    avatar: true
-                }
-            },
-            type: {
-                select: {
-                    name: true
-                }
-            },
+            dynasty: true,
+            token: true,
+            type: true,
             linkApply: true,
             rewardFrom: true,
             rewardTo: true,
             textBlocks: true,
+            createdAt: true,
             updatedAt: true,
-            organization: {
-                select: {
-                    id: true,
-                    name: true,
-                    contractAddress: true
-                }
-            }
+            organization: true,
+            state: true,
+            tokenReward: true,
+            tags: true,
         },
         where: {
-            state: "PUBLISHED",
             organization: { contractAddress: { contains: contractAddress ? contractAddress.toString() : undefined }, id: { equals: instituteId ? instituteId.toString() : undefined } }
         },
         orderBy: [

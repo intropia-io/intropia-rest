@@ -30,6 +30,8 @@
  *          type: string
  *        tags:
  *          type: array
+ *        type:
+ *         type: object
  *        createdAt:
  *          type: string
  *        updatedAt:
@@ -48,9 +50,13 @@
  *          type: string
  *        contractAddress:
  *          type: string
+ *       state:
+ *        type: string
  */
 
+import { EntityStates } from "./defaultTypes";
 import { Tag } from "./tag";
+import { Type } from "./type";
 
 export interface Institute {
   id: string;
@@ -65,6 +71,7 @@ export interface Institute {
   verified: boolean;
   textBlocks: string;
   tags: Tag[]
+  type: Type
   linkWebsite: string;
   linkTelegram: string;
   linkTwitter: string;
@@ -74,4 +81,5 @@ export interface Institute {
   contractAddress: string;
   createdAt: string;
   updatedAt: string;
+  state: EntityStates
 }

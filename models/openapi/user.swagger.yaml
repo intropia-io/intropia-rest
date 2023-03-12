@@ -84,12 +84,6 @@ components:
             title: User.refAccount.[]
           title: User.refAccount
           type: array
-        firstSignIn:
-          title: User.firstSignIn
-          type: boolean
-        optIn:
-          title: User.optIn
-          type: boolean
         createdAt:
           title: User.createdAt
           type: string
@@ -116,8 +110,6 @@ components:
         - apply
         - refLink
         - refAccount
-        - firstSignIn
-        - optIn
         - createdAt
         - updatedAt
       additionalProperties: false

@@ -86,8 +86,6 @@ export default async function handler(
           apply: true,
           refLink: true,
           refAccount: true,
-          firstSignIn: true,
-          optIn: true,
           createdAt: true,
           updatedAt: true,
         }

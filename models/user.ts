@@ -70,8 +70,6 @@ export interface User {
     refLink: RefLink[],
     refAccount: RefAccount[],
     //experience        RewardExperience[],
-    firstSignIn: boolean,
-    optIn: boolean,
     createdAt: string,
     updatedAt: string,
 }

@@ -51,7 +51,7 @@ export default async function handler(
     return res.status(400).json({ error: "auth not correct" });
 
   const {
-    query: { take, skip, sort },
+    query: { take, skip, sort }
   } = req;
   const users = await prisma.user.findMany({
     take: take ? parseInt(take.toString()) : 100,

@@ -124,6 +124,39 @@
             "type": "string",
             "title": "Institute.description"
           },
+          "avatar": {
+            "type": "string"
+          },
+          "cover": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string"
+          },
+          "market": {
+            "type": "string"
+          },
+          "treasury": {
+            "type": "string"
+          },
+          "dateFounded": {
+            "type": "string"
+          },
+          "verified": {
+            "type": "boolean"
+          },
+          "textBlocks": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          },
           "linkWebsite": {
             "type": "string",
             "title": "Institute.linkWebsite"
@@ -291,6 +324,27 @@
         "additionalProperties": false,
         "title": "RefLink",
         "description": "@swagger components:\r\n schemas:\r\n   RefLink:\r\n     type: object\r\n     properties:\r\n       name:\r\n         id: string\r\n         shortId: string\r\n         questId: string\r\n         createdById: string\r\n         refAccountId: string\r\n         createdAt: string\r\n         updatedAt: string"
+      },
+      "Tag": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "cuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        }
       },
       "Token": {
         "type": "object",
@@ -626,6 +680,39 @@
             "in": "query",
             "default": "desc",
             "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Institute"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/institute/{instituteId}": {
+      "get": {
+        "tags": [
+          "Institutes"
+        ],
+        "description": "Returns all institutes",
+        "parameters": [
+          {
+            "name": "instituteId",
+            "description": "id of organization",
+            "in": "path",
+            "required": true,
             "type": "string"
           }
         ],

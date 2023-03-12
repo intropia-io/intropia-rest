@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "postbuild": "cpy 'models/**/*.swagger.yaml' public/openapi --flat",
-    "openapi:yaml": "yarn typeconv -f ts -t oapi --oapi-format yaml --output-extension 'swagger.yaml' --output-directory 'models/openapi' 'models/*.ts'",
+    "openapi": "yarn typeconv -f ts -t oapi --oapi-format yaml --output-extension 'swagger.yaml' --output-directory 'models/openapi' 'models/*.ts'",
     "buildDoc": "yarn next-swagger-doc-cli next-swagger-doc.json"
   },
   "dependencies": {

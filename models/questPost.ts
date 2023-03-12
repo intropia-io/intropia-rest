@@ -2,7 +2,7 @@
  * @swagger
  * components:
  *  schemas:
- *    Quest:
+ *    QuestPost:
  *      type: object
  *      properties:
  *        id:
@@ -13,11 +13,11 @@
  *        description:
  *          type: string
  *        dynasty:
- *          $ref: '#/components/schemas/Dynasty'
+ *          $ref: object
  *        token:
- *          $ref: '#/components/schemas/Token'
+ *          $ref: object
  *        type:
- *          $ref: '#/components/schemas/Type'
+ *          $ref: object
  *        linkApply:
  *          type: string
  *        rewardFrom:
@@ -30,39 +30,31 @@
  *          type: string
  *          format: date-time
  *        organization:
- *          $ref: '#/components/schemas/Institute'
+ *          $ref: object
  *       tags:
  *          type: array
  *       tokenReward:
- *          $ref: '#/components/schemas/Token'
+ *          $ref: object
  *       state:
  *          type: string
  */
 
-import { Institute } from "./institute";
-import { Dynasty } from "./dynasty";
-import { Token } from "./token";
-import { Type } from "./type";
-import { Tag } from "./tag";
 import { EntityStates } from "./defaultTypes";
 
-export interface Quest {
-    id: string;
+export interface QuestPost {
     title: string;
     description: string;
+    tags: [{ value: string }],
     reffLink: string;
-    dynasty: Dynasty;
-    token: Token;
-    type: Type;
-    linkApply: string;
-    rewardFrom?: number;
+    tokenReward?: { value: string }
     reffReward?: number;
+    state: EntityStates
+    organization: { value: string },
+    dynasty: { value: string };
+    type: { value: string };
+    linkApply: string;
+    token?: { value: string };
+    rewardFrom?: number;
     rewardTo?: number;
     textBlocks: string;
-    createdAt: string;
-    updatedAt: string;
-    organization: Institute
-    tags: Tag[]
-    tokenReward: Token
-    state: EntityStates
 }

@@ -4,6 +4,12 @@
  *   get:
  *     tags: [Types]
  *     description: Returns all types
+ *     parameters:
+ *       - name: categoryName
+ *         description: filter by category name
+ *         in: query
+ *         required: false
+ *         type: string
  *     responses:
  *       200:
  *         description: success result
@@ -18,6 +24,7 @@
 
 import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "@intropia-io/prisma-schema";
+import { CategoryType } from "@prisma/client";
 
 export default async function handler(
   req: NextApiRequest,
@@ -27,6 +34,11 @@ export default async function handler(
     res.status(200).end()
     return
   }
+
+  const {
+    query: { categoryName },
+  } = req;
+
   const types = await prisma.type.findMany({
     select: {
       id: true,
@@ -35,6 +47,9 @@ export default async function handler(
       color: true,
       categoryType: true,
       customRules: true
+    },
+    where: {
+      categoryType: categoryName?.toString() as CategoryType || undefined
     },
     orderBy: [
       {

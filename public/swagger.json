@@ -1760,6 +1760,15 @@
           "Types"
         ],
         "description": "Returns all types",
+        "parameters": [
+          {
+            "name": "categoryName",
+            "description": "filter by category name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "success result",

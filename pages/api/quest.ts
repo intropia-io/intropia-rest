@@ -51,6 +51,11 @@
  *         in: query
  *         required: false
  *         type: string
+ *       - name: count
+ *         description: return count of rows
+ *         in: query
+ *         required: false
+ *         type: boolean
  *     responses:
  *       200:
  *         description: success result
@@ -103,8 +108,20 @@ export default async function handler(
             return res.status(400).json({ error: "auth not correct" });
 
         const {
-            query: { take, skip, sort, contractAddress, instituteId, type, search, state, rewards },
+            query: { take, skip, sort, contractAddress, instituteId, type, search, state, rewards, count },
         } = req;
+        if (count === "true") {
+            const count = await prisma.quests.count({
+                where: {
+                    organization: { contractAddress: { contains: contractAddress ? contractAddress.toString() : undefined }, id: { equals: instituteId ? instituteId.toString() : undefined } },
+                    type: { id: type ? type.toString() : undefined },
+                    title: { contains: search ? search.toString() : undefined },
+                    state: state ? state.toString() as EntityStates : undefined,
+                    reffReward: rewards === "true" ? { gt: 0 } : rewards === "false" ? { equals: 0 } : undefined,
+                },
+            });
+            return res.status(200).json(count);
+        }
         const quests = await prisma.quests.findMany({
             take: take ? parseInt(take.toString()) : 100,
             skip: skip ? parseInt(skip.toString()) : undefined,

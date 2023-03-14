@@ -1481,6 +1481,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "count",
+            "description": "return count of rows",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
           }
         ],
         "responses": {

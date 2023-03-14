@@ -1803,6 +1803,30 @@
         }
       }
     },
+    "/api/tag": {
+      "get": {
+        "tags": [
+          "Tag"
+        ],
+        "description": "Returns all tags",
+        "responses": {
+          "200": {
+            "description": "success result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Tag"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/type": {
       "get": {
         "tags": [

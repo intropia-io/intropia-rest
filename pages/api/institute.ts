@@ -5,6 +5,11 @@
  *     tags: [Institutes]
  *     description: Returns all institutes
  *     parameters:
+ *       - name: orgList
+ *         description: get only institutes from this list
+ *         in: query
+ *         required: false
+ *         type: array
  *       - name: take
  *         description: take number of rows (default 10)
  *         in: query
@@ -51,8 +56,9 @@ export default async function handler(
     return res.status(400).json({ error: "auth not correct" });
 
   const {
-    query: { take, skip, sort },
+    query: { take, skip, sort, orgList },
   } = req;
+
   const quests = await prisma.organizations.findMany({
     take: take ? parseInt(take.toString()) : 10,
     skip: skip ? parseInt(skip.toString()) : undefined,
@@ -79,6 +85,9 @@ export default async function handler(
       linkMedium: true,
       contractAddress: true,
       state: true,
+    },
+    where: {
+      id: orgList ? { in: orgList.toString().split(",") } : undefined,
     },
     orderBy: [
       {

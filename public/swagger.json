@@ -1331,6 +1331,13 @@
         "description": "Returns all institutes",
         "parameters": [
           {
+            "name": "orgList",
+            "description": "get only institutes from this list",
+            "in": "query",
+            "required": false,
+            "type": "array"
+          },
+          {
             "name": "take",
             "description": "take number of rows (default 10)",
             "in": "query",

@@ -10,6 +10,11 @@
  *         in: path
  *         required: true
  *         type: string
+ *       - name: instituteId
+ *         description: filter by instituteId of institute
+ *         in: query
+ *         required: false
+ *         type: string
  *     responses:
  *       200:
  *         description: success result
@@ -58,7 +63,7 @@ export default async function handler(
         res.status(200).end()
         return
     }
-    const { questId } = req.query;
+    const { questId, instituteId } = req.query;
     const token = req.headers.authorization?.split(" ")[1];
     if (req.method === 'GET') {
         const _hasRights = await hasRights({ token: token! });
@@ -68,7 +73,7 @@ export default async function handler(
         if (!questId)
             return res.status(401).json({ error: "no questId" })
 
-        const quest = await prisma.quests.findUnique({
+        const quest = await prisma.quests.findFirst({
             select: {
                 id: true,
                 title: true,
@@ -89,7 +94,7 @@ export default async function handler(
                 tokenReward: true,
                 tags: true,
             },
-            where: { id: questId?.toString() },
+            where: { id: questId?.toString(), organization: { id: { equals: instituteId ? instituteId.toString() : undefined } }, },
         })
         return res.status(200).json(quest)
     }

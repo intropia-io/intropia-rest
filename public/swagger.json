@@ -1553,6 +1553,13 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "instituteId",
+            "description": "filter by instituteId of institute",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "responses": {

@@ -31,6 +31,26 @@
  *         in: query
  *         required: false
  *         type: string
+ *       - name: type
+ *         description: filter by type of job
+ *         in: query
+ *         required: false
+ *         type: string
+ *       - name: search
+ *         description: filter by name
+ *         in: query
+ *         required: false
+ *         type: string
+ *       - name: state
+ *         description: filter by state
+ *         in: query
+ *         required: false
+ *         type: string
+ *       - name: rewards
+ *         description: filter by rewards
+ *         in: query
+ *         required: false
+ *         type: string
  *     responses:
  *       200:
  *         description: success result
@@ -65,6 +85,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { hasRights } from '../../prisma/hasRights';
 import { prisma } from "@intropia-io/prisma-schema";
+import { EntityStates } from '@prisma/client';
 
 export default async function handler(
     req: NextApiRequest,
@@ -82,7 +103,7 @@ export default async function handler(
             return res.status(400).json({ error: "auth not correct" });
 
         const {
-            query: { take, skip, sort, contractAddress, instituteId },
+            query: { take, skip, sort, contractAddress, instituteId, type, search, state, rewards },
         } = req;
         const quests = await prisma.quests.findMany({
             take: take ? parseInt(take.toString()) : 100,
@@ -98,6 +119,7 @@ export default async function handler(
                 rewardFrom: true,
                 rewardTo: true,
                 textBlocks: true,
+                reffReward: true,
                 createdAt: true,
                 updatedAt: true,
                 organization: true,
@@ -106,7 +128,11 @@ export default async function handler(
                 tags: true,
             },
             where: {
-                organization: { contractAddress: { contains: contractAddress ? contractAddress.toString() : undefined }, id: { equals: instituteId ? instituteId.toString() : undefined } }
+                organization: { contractAddress: { contains: contractAddress ? contractAddress.toString() : undefined }, id: { equals: instituteId ? instituteId.toString() : undefined } },
+                type: { id: type ? type.toString() : undefined },
+                title: { contains: search ? search.toString() : undefined },
+                state: state ? state.toString() as EntityStates : undefined,
+                reffReward: rewards === "true" ? { gt: 0 } : rewards === "false" ? { equals: 0 } : undefined,
             },
             orderBy: [
                 {

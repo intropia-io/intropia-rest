@@ -1453,6 +1453,34 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "type",
+            "description": "filter by type of job",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "search",
+            "description": "filter by name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "state",
+            "description": "filter by state",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "rewards",
+            "description": "filter by rewards",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "responses": {

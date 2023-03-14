@@ -110,6 +110,7 @@ export default async function handler(
         const {
             query: { take, skip, sort, contractAddress, instituteId, type, search, state, rewards, count },
         } = req;
+
         if (count) {
             const count = await prisma.quests.count({
                 where: {
@@ -117,7 +118,7 @@ export default async function handler(
                     type: { id: type ? type.toString() : undefined },
                     title: { contains: search ? search.toString() : undefined },
                     state: state ? state.toString() as EntityStates : undefined,
-                    reffReward: rewards === "true" ? { gt: 0 } : rewards === "false" ? { equals: 0 } : undefined,
+                    reffReward: rewards === "true" ? { gt: 0 } : rewards === "false" ? null : undefined,
                 },
             });
             return res.status(200).json(count);
@@ -149,7 +150,7 @@ export default async function handler(
                 type: { id: type ? type.toString() : undefined },
                 title: { contains: search ? search.toString() : undefined },
                 state: state ? state.toString() as EntityStates : undefined,
-                reffReward: rewards === "true" ? { gt: 0 } : rewards === "false" ? { equals: 0 } : undefined,
+                reffReward: rewards === "true" ? { gt: 0 } : rewards === "false" ? null : undefined,
             },
             orderBy: [
                 {

@@ -110,7 +110,7 @@ export default async function handler(
         const {
             query: { take, skip, sort, contractAddress, instituteId, type, search, state, rewards, count },
         } = req;
-        if (count === "true") {
+        if (count) {
             const count = await prisma.quests.count({
                 where: {
                     organization: { contractAddress: { contains: contractAddress ? contractAddress.toString() : undefined }, id: { equals: instituteId ? instituteId.toString() : undefined } },

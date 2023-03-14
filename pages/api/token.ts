@@ -1,9 +1,9 @@
 /**
  * @swagger
- * /api/tag:
+ * /api/token:
  *   get:
- *     tags: [Tag]
- *     description: Returns all tags
+ *     tags: [Token]
+ *     description: Returns all tokens
  *     responses:
  *       200:
  *         description: success result
@@ -13,7 +13,7 @@
  *               type: array
  *               items:
  *                 type: object
- *                 $ref: '#/components/schemas/Tag'
+ *                 $ref: '#/components/schemas/Token'
  */
 
 import { prisma } from "@intropia-io/prisma-schema";
@@ -29,7 +29,7 @@ export default async function handler(
   }
 
 
-  const types = await prisma.tags.findMany({
+  const types = await prisma.token.findMany({
     orderBy: [
       {
         name: "asc",

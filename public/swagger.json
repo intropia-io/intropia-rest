@@ -1827,6 +1827,30 @@
         }
       }
     },
+    "/api/token": {
+      "get": {
+        "tags": [
+          "Token"
+        ],
+        "description": "Returns all tokens",
+        "responses": {
+          "200": {
+            "description": "success result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Token"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/type": {
       "get": {
         "tags": [

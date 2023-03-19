@@ -75,6 +75,22 @@ components:
         - DECLINED
       title: ApplyStatus
       type: string
+    ApplyHistoryStatus:
+      enum:
+        - NEW
+        - REQUEST_INFO
+        - VERIFIED
+        - DECLINED
+        - DECLINED_CLIENT
+        - INTERVIEW
+        - SENT_OFFER
+        - DECLINED_OFFER
+        - TEST_PERIOD
+        - APPROVED
+        - FIRED
+        - GET_OFFER
+      title: ApplyHistoryStatus
+      type: string
     RefAccountType:
       enum:
         - PERSONAL

@@ -21,6 +21,12 @@ components:
         quest:
           $ref: '#/components/schemas/Quest'
           title: Apply.quest
+        historyStatus:
+          items:
+            $ref: '#/components/schemas/ApplyStatusHistory'
+            title: Apply.historyStatus.[]
+          title: Apply.historyStatus
+          type: array
         user:
           $ref: '#/components/schemas/User'
           title: Apply.user
@@ -33,18 +39,15 @@ components:
         updatedAt:
           title: Apply.updatedAt
           type: string
-        status:
-          $ref: '#/components/schemas/ApplyStatus'
-          title: Apply.status
       required:
         - id
         - link
         - quest
+        - historyStatus
         - user
         - cv
         - createdAt
         - updatedAt
-        - status
       additionalProperties: false
       title: Apply
       type: object

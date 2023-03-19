@@ -20,8 +20,11 @@
  *        cv:
  *          type: object
  *          $ref: '#/components/schemas/Cv'
- *        status:
- *          type: string
+ *        historyStatus:
+ *          type: array
+ *          items:
+ *          type: object
+ *          $ref: '#/components/schemas/ApplyStatusHistory'
  *        contactEmail:
  *          type: string
  *        createdAt:
@@ -31,7 +34,7 @@
  */
 
 import { ApplyCV } from "./applyCV";
-import { ApplyStatus } from "./defaultTypes";
+import { ApplyStatusHistory } from "./applyStatusHistory";
 import { Quest } from "./quest";
 import { RefLink } from "./refLink";
 import { User } from "./user";
@@ -40,9 +43,10 @@ export interface Apply {
     id: string;
     link: RefLink;
     quest: Quest;
+    historyStatus: ApplyStatusHistory[]
     user: User;
     cv: ApplyCV;
     createdAt: string;
     updatedAt: string;
-    status: ApplyStatus
+
 }

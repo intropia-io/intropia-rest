@@ -110,9 +110,9 @@
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
 "@intropia-io/prisma-schema@^1.0.5":
-  version "1.1.4"
-  resolved "https://npm.pkg.github.com/download/@intropia-io/prisma-schema/1.1.4/30a0b45cf5edf02c59e7859f71c375dfba1f1819#30a0b45cf5edf02c59e7859f71c375dfba1f1819"
-  integrity sha512-v72z2jMV2wl14SomBdRZSGGDZsWycAizPg3Dmr4jLCQSPgGJMkBg3WsRlCcnv0M1HA0uLqL5UaynRbOmjGNuwQ==
+  version "1.1.6"
+  resolved "https://npm.pkg.github.com/download/@intropia-io/prisma-schema/1.1.6/bfded084eb40a7c21d70e81f4cf18616df07fd11#bfded084eb40a7c21d70e81f4cf18616df07fd11"
+  integrity sha512-G3jW62fG8BkgvTc+fcUQfbic22n4jcONzQGm8Kfm8xKpViNt+c5382PfZyf4yDbsKu/5sp2e+5PtB1qpLlnyww==
   dependencies:
     "@prisma/client" "4.5.0"
     "@types/node" "^18.11.18"
@@ -291,9 +291,9 @@
   integrity sha512-WdlVphvfR/GJCLEMbNA8lJ0lhFNBj4SW3O+O5/cEGw9oYrv0al9zTwuQsq+myDUXgNx2jgBynoVgZ2MMJ6pbow==
 
 "@types/node@^18.11.18":
-  version "18.11.18"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.18.tgz#8dfb97f0da23c2293e554c5a50d61ef134d7697f"
-  integrity sha512-DHQpWGjyQKSHj3ebjFI/wRKcqQcdR+MoFBygntYOZytCqNfkd2ZC4ARDJ2DQqhjH5p85Nnd3jhUJIXrszFX/JA==
+  version "18.15.3"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.15.3.tgz#f0b991c32cfc6a4e7f3399d6cb4b8cf9a0315014"
+  integrity sha512-p6ua9zBxz5otCmbpb5D3U4B5Nanw6Pk3PPyX05xnxbB/fRv71N7CPmORg7uAD5P70T0xmx1pzAx/FUfa5X+3cw==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.1"

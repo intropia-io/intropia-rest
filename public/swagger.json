@@ -12,64 +12,6 @@
       }
     },
     "schemas": {
-      "Apply": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "cuid",
-            "title": "Apply.id"
-          },
-          "link": {
-            "type": "object",
-            "$ref": "#/components/schemas/RefLink",
-            "title": "Apply.link"
-          },
-          "quest": {
-            "type": "object",
-            "$ref": "#/components/schemas/Quest",
-            "title": "Apply.quest"
-          },
-          "user": {
-            "type": "object",
-            "$ref": "#/components/schemas/User",
-            "title": "Apply.user"
-          },
-          "cv": {
-            "type": "object",
-            "$ref": "#/components/schemas/ApplyCV",
-            "title": "Apply.cv"
-          },
-          "status": {
-            "type": "string",
-            "$ref": "#/components/schemas/ApplyStatus",
-            "title": "Apply.status"
-          },
-          "contactEmail": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string",
-            "title": "Apply.createdAt"
-          },
-          "updatedAt": {
-            "type": "string",
-            "title": "Apply.updatedAt"
-          }
-        },
-        "required": [
-          "id",
-          "link",
-          "quest",
-          "user",
-          "cv",
-          "createdAt",
-          "updatedAt",
-          "status"
-        ],
-        "additionalProperties": false,
-        "title": "Apply"
-      },
       "Cv": {
         "type": "object",
         "properties": {
@@ -87,6 +29,56 @@
             "type": "string"
           }
         }
+      },
+      "ApplyStatusHistory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "cuid",
+            "title": "ApplyStatusHistory.id"
+          },
+          "apply": {
+            "type": "object",
+            "$ref": "#/components/schemas/Apply",
+            "title": "ApplyStatusHistory.apply"
+          },
+          "applyId": {
+            "type": "string",
+            "format": "cuid"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "NEW",
+              "REQUEST_INFO",
+              "VERIFIED",
+              "DECLINED",
+              "DECLINED_CLIENT",
+              "INTERVIEW",
+              "SENT_OFFER",
+              "DECLINED_OFFER",
+              "TEST_PERIOD",
+              "APPROVED",
+              "FIRED",
+              "GET_OFFER"
+            ],
+            "$ref": "#/components/schemas/ApplyHistoryStatus",
+            "title": "ApplyStatusHistory.status"
+          },
+          "createdAt": {
+            "type": "string",
+            "title": "ApplyStatusHistory.createdAt"
+          }
+        },
+        "required": [
+          "id",
+          "apply",
+          "status",
+          "createdAt"
+        ],
+        "additionalProperties": false,
+        "title": "ApplyStatusHistory"
       },
       "Type": {
         "type": "object",
@@ -407,6 +399,59 @@
         "title": "WhitelistSubscribes",
         "description": "@swagger components:\r\n schemas:\r\n   WhitelistSubscribes:\r\n     type: object\r\n     properties:\r\n       name:\r\n         id: string\r\n         email: string\r\n         createdAt: string"
       },
+      "Apply": {
+        "properties": {
+          "id": {
+            "title": "Apply.id",
+            "type": "string"
+          },
+          "link": {
+            "$ref": "#/components/schemas/RefLink",
+            "title": "Apply.link"
+          },
+          "quest": {
+            "$ref": "#/components/schemas/Quest",
+            "title": "Apply.quest"
+          },
+          "historyStatus": {
+            "items": {
+              "$ref": "#/components/schemas/ApplyStatusHistory",
+              "title": "Apply.historyStatus.[]"
+            },
+            "title": "Apply.historyStatus",
+            "type": "array"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User",
+            "title": "Apply.user"
+          },
+          "cv": {
+            "$ref": "#/components/schemas/ApplyCV",
+            "title": "Apply.cv"
+          },
+          "createdAt": {
+            "title": "Apply.createdAt",
+            "type": "string"
+          },
+          "updatedAt": {
+            "title": "Apply.updatedAt",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "link",
+          "quest",
+          "historyStatus",
+          "user",
+          "cv",
+          "createdAt",
+          "updatedAt"
+        ],
+        "additionalProperties": false,
+        "title": "Apply",
+        "type": "object"
+      },
       "ApplyCV": {
         "properties": {
           "id": {
@@ -692,6 +737,24 @@
           "DECLINED"
         ],
         "title": "ApplyStatus",
+        "type": "string"
+      },
+      "ApplyHistoryStatus": {
+        "enum": [
+          "NEW",
+          "REQUEST_INFO",
+          "VERIFIED",
+          "DECLINED",
+          "DECLINED_CLIENT",
+          "INTERVIEW",
+          "SENT_OFFER",
+          "DECLINED_OFFER",
+          "TEST_PERIOD",
+          "APPROVED",
+          "FIRED",
+          "GET_OFFER"
+        ],
+        "title": "ApplyHistoryStatus",
         "type": "string"
       },
       "RefAccountType": {

@@ -93,7 +93,16 @@ export default async function handler(
       cv: true,
       createdAt: true,
       updatedAt: true,
-      status: true,
+      historyStatus: {
+        select: {
+          id: true,
+          status: true,
+          createdAt: true,
+        },
+        orderBy: {
+          createdAt: 'desc',
+        },
+      }
     },
     where: {
       quest: {

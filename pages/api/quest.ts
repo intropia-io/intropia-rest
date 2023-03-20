@@ -56,6 +56,14 @@
  *         in: query
  *         required: false
  *         type: boolean
+ *       - name: withApply
+ *         in: query
+ *         required: false
+ *         type: boolean
+ *       - name: applySelect
+ *         in: query
+ *         required: false
+ *         type: string
  *     responses:
  *       200:
  *         description: success result
@@ -108,7 +116,7 @@ export default async function handler(
             return res.status(400).json({ error: "auth not correct" });
 
         const {
-            query: { take, skip, sort, contractAddress, instituteId, type, search, state, rewards, count },
+            query: { take, skip, sort, contractAddress, instituteId, type, search, state, rewards, count, withApply, applySelect },
         } = req;
 
         if (count) {
@@ -144,6 +152,16 @@ export default async function handler(
                 state: true,
                 tokenReward: true,
                 tags: true,
+                apply: withApply && applySelect ? {
+                    select: {
+                        status: true,
+                    },
+                    where: {
+                        status: {
+                            in: applySelect.toString().split(",") as any
+                        }
+                    }
+                } : undefined,
             },
             where: {
                 organization: { contractAddress: { contains: contractAddress ? contractAddress.toString() : undefined }, id: { equals: instituteId ? instituteId.toString() : undefined } },
@@ -151,6 +169,14 @@ export default async function handler(
                 title: { contains: search ? search.toString() : undefined },
                 state: state ? state.toString() as EntityStates : undefined,
                 reffReward: rewards === "true" ? { gt: 0 } : rewards === "false" ? null : undefined,
+                apply: withApply ? {
+                    some: {
+                        status: {
+                            in: applySelect?.toString().split(",") as any
+                        }
+                    }
+                } : undefined,
+
             },
             orderBy: [
                 {

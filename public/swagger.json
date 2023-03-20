@@ -1551,6 +1551,18 @@
             "in": "query",
             "required": false,
             "type": "boolean"
+          },
+          {
+            "name": "withApply",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "applySelect",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "responses": {

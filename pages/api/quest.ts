@@ -172,11 +172,9 @@ export default async function handler(
                 description: req.body.description,
                 tags: {
                     connect:
-                        req.body.tags === ""
-                            ? []
-                            : req.body.tags?.split(",").map((tag: string) => ({
-                                id: tag,
-                            })),
+                        req.body.tags?.split(",").map((tag: string) => ({
+                            id: tag,
+                        })),
                 },
 
                 reffLink: req.body.reffLink,

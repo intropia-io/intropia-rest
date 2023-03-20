@@ -113,20 +113,20 @@ export default async function handler(
                 tags: {
                     set: [],
                     connect:
-                        req.body.tags[0] === ""
+                        req.body.tags === ""
                             ? []
-                            : req.body.tags?.map((tag: { label: string; value: string }) => ({
-                                id: tag.value,
+                            : req.body.tags?.split(",").map((tag: string) => ({
+                                id: tag,
                             })),
                 },
 
                 reffLink: req.body.reffLink,
 
-                ...(req.body.tokenReward?.value
+                ...(req.body.tokenReward
                     ? {
                         tokenReward: {
                             connect: {
-                                id: req.body.tokenReward.value,
+                                id: req.body.tokenReward,
                             },
                         },
                     }
@@ -141,29 +141,29 @@ export default async function handler(
 
                 organization: {
                     connect: {
-                        id: req.body.organization.value,
+                        id: req.body.organization,
                     },
                 },
 
                 dynasty: {
                     connect: {
-                        id: req.body.dynasty.value,
+                        id: req.body.dynasty,
                     },
                 },
 
                 type: {
                     connect: {
-                        id: req.body.type.value,
+                        id: req.body.type,
                     },
                 },
 
                 linkApply: req.body.linkApply,
 
-                ...(req.body.token?.value
+                ...(req.body.token
                     ? {
                         token: {
                             connect: {
-                                id: req.body.token.value,
+                                id: req.body.token,
                             },
                         },
                     }

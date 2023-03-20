@@ -98,7 +98,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { hasRights } from '../../prisma/hasRights';
 import { prisma } from "@intropia-io/prisma-schema";
-import { EntityStates } from '@prisma/client';
+import { ApplyHistoryStatus, EntityStates } from '@prisma/client';
 
 export default async function handler(
     req: NextApiRequest,
@@ -131,6 +131,12 @@ export default async function handler(
             });
             return res.status(200).json(count);
         }
+
+        const applyStatuses = applySelect ? applySelect.toString().split(",").map(status => status.trim() as ApplyHistoryStatus) : undefined;
+
+
+
+
         const quests = await prisma.quests.findMany({
             take: take ? parseInt(take.toString()) : 100,
             skip: skip ? parseInt(skip.toString()) : undefined,
@@ -152,13 +158,26 @@ export default async function handler(
                 state: true,
                 tokenReward: true,
                 tags: true,
-                apply: withApply && applySelect ? {
+                apply: withApply && applyStatuses ? {
                     select: {
-                        status: true,
+                        historyStatus: {
+                            select: {
+                                status: true,
+                                createdAt: true,
+                            },
+                            orderBy: {
+                                createdAt: "desc",
+                            },
+                            take: 1,
+                        },
                     },
                     where: {
-                        status: {
-                            in: applySelect.toString().split(",") as any
+                        historyStatus: {
+                            some: {
+                                status: {
+                                    in: applyStatuses
+                                }
+                            }
                         }
                     }
                 } : undefined,
@@ -171,8 +190,12 @@ export default async function handler(
                 reffReward: rewards === "true" ? { gt: 0 } : rewards === "false" ? null : undefined,
                 apply: withApply ? {
                     some: {
-                        status: {
-                            in: applySelect?.toString().split(",") as any
+                        historyStatus: {
+                            some: {
+                                status: {
+                                    in: applyStatuses
+                                }
+                            }
                         }
                     }
                 } : undefined,

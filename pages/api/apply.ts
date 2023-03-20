@@ -10,7 +10,12 @@
  *         in: query
  *         required: false
  *         type: string
-*       - name: take
+ *       - name: jobId
+ *         description: take filter by jobId
+ *         in: query
+ *         required: false
+ *         type: string
+ *       - name: take
  *         description: take number of rows (default 100)
  *         in: query
  *         required: false
@@ -56,7 +61,7 @@ export default async function handler(
     return res.status(400).json({ error: "auth not correct" });
 
   const {
-    query: { take, skip, sort, organizationId }
+    query: { take, skip, sort, organizationId, jobId }
   } = req;
   const apply = await prisma.apply.findMany({
     take: take ? parseInt(take.toString()) : 100,
@@ -108,7 +113,8 @@ export default async function handler(
       quest: {
         organization: {
           id: organizationId?.toString() || undefined
-        }
+        },
+        id: jobId?.toString() || undefined
       }
     },
     orderBy: [

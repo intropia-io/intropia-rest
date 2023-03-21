@@ -78,6 +78,8 @@ export default async function handler(
                 select: {
                     id: true,
                     name: true,
+                    firstName: true,
+                    lastName: true,
                     email: true,
                     image: true,
                     resumeLink: true,

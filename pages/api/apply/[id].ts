@@ -48,6 +48,7 @@ export default async function handler(
         select: {
             id: true,
             createdAt: true,
+            expectedSalary: true,
             link: true,
             quest: {
                 select: {
@@ -83,6 +84,9 @@ export default async function handler(
                     email: true,
                     image: true,
                     resumeLink: true,
+                    telegram: true,
+                    twitterLink: true,
+                    githubLink: true,
                 },
             },
             cv: true,

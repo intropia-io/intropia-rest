@@ -7,7 +7,7 @@
  *     parameters:
  *       - name: id
  *         description: id of apply
- *         in: query
+ *         in: path
  *         required: true
  *         type: string
  *       - name: status
@@ -46,8 +46,10 @@ export default async function handler(
         return res.status(400).json({ error: "auth not correct" });
 
     const {
-        query: { id, status }
+        query: { id }
     } = req;
+
+    const { status } = req.body;
 
     const apply = await prisma.applyStatusHistory.create({
         data: {

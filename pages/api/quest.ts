@@ -119,6 +119,7 @@ export default async function handler(
             query: { take, skip, sort, contractAddress, instituteId, type, search, state, rewards, count, withApply, applySelect, },
         } = req;
         const applyStatuses = applySelect ? applySelect.toString().split(",").map(status => status.trim() as ApplyHistoryStatus) : undefined;
+
         if (count) {
             const quests = await prisma.quests.findMany({
                 select: {
@@ -128,7 +129,6 @@ export default async function handler(
                             historyStatus: {
                                 select: {
                                     status: true,
-                                    createdAt: true,
                                 },
                                 orderBy: {
                                     createdAt: "desc",
@@ -153,21 +153,13 @@ export default async function handler(
                     title: { contains: search ? search.toString() : undefined },
                     state: state ? state.toString() as EntityStates : undefined,
                     reffReward: rewards === "true" ? { gt: 0 } : rewards === "false" ? null : undefined,
-                    apply: withApply ? {
-                        some: {
-                            historyStatus: {
-                                some: {
-                                    status: {
-                                        in: applyStatuses
-                                    }
-                                }
-                            }
-                        }
-                    } : undefined,
-
                 },
             })
-            return res.status(200).json(quests.length);
+
+            if (withApply)
+                res.status(200).json(quests.filter((quest: any) => quest.apply.filter((a: any) => applyStatuses?.find(status => status === a.historyStatus[0].status)).length > 0).length)
+            else
+                return res.status(200).json(quests.filter((quest: any) => quest.apply.length > 0).length);
         }
 
 

@@ -120,7 +120,33 @@ export default async function handler(
         } = req;
         const applyStatuses = applySelect ? applySelect.toString().split(",").map(status => status.trim() as ApplyHistoryStatus) : undefined;
         if (count) {
-            const count = await prisma.quests.count({
+            const quests = await prisma.quests.findMany({
+                select: {
+                    id: true,
+                    apply: withApply && applyStatuses ? {
+                        select: {
+                            historyStatus: {
+                                select: {
+                                    status: true,
+                                    createdAt: true,
+                                },
+                                orderBy: {
+                                    createdAt: "desc",
+                                },
+                                take: 1,
+                            },
+                        },
+                        where: {
+                            historyStatus: {
+                                some: {
+                                    status: {
+                                        in: applyStatuses
+                                    }
+                                }
+                            }
+                        }
+                    } : undefined,
+                },
                 where: {
                     organization: { contractAddress: { contains: contractAddress ? contractAddress.toString() : undefined }, id: { equals: instituteId ? instituteId.toString() : undefined } },
                     type: { id: type ? type.toString() : undefined },
@@ -140,8 +166,8 @@ export default async function handler(
                     } : undefined,
 
                 },
-            });
-            return res.status(200).json(count);
+            })
+            return res.status(200).json(quests.length);
         }
 
 

@@ -116,9 +116,9 @@ export default async function handler(
             return res.status(400).json({ error: "auth not correct" });
 
         const {
-            query: { take, skip, sort, contractAddress, instituteId, type, search, state, rewards, count, withApply, applySelect },
+            query: { take, skip, sort, contractAddress, instituteId, type, search, state, rewards, count, withApply, applySelect, },
         } = req;
-
+        const applyStatuses = applySelect ? applySelect.toString().split(",").map(status => status.trim() as ApplyHistoryStatus) : undefined;
         if (count) {
             const count = await prisma.quests.count({
                 where: {
@@ -127,12 +127,24 @@ export default async function handler(
                     title: { contains: search ? search.toString() : undefined },
                     state: state ? state.toString() as EntityStates : undefined,
                     reffReward: rewards === "true" ? { gt: 0 } : rewards === "false" ? null : undefined,
+                    apply: withApply ? {
+                        some: {
+                            historyStatus: {
+                                some: {
+                                    status: {
+                                        in: applyStatuses
+                                    }
+                                }
+                            }
+                        }
+                    } : undefined,
+
                 },
             });
             return res.status(200).json(count);
         }
 
-        const applyStatuses = applySelect ? applySelect.toString().split(",").map(status => status.trim() as ApplyHistoryStatus) : undefined;
+
 
 
 

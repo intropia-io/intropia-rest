@@ -32,30 +32,31 @@ export default async function handler(
 ) {
   if (req.method === 'OPTIONS') {
     res.status(200).end()
-    return
   }
+  else {
 
-  const {
-    query: { categoryName },
-  } = req;
+    const {
+      query: { categoryName },
+    } = req;
 
-  const types = await prisma.type.findMany({
-    select: {
-      id: true,
-      name: true,
-      description: true,
-      color: true,
-      categoryType: true,
-      customRules: true
-    },
-    where: {
-      categoryType: categoryName?.toString() as CategoryType || undefined
-    },
-    orderBy: [
-      {
-        name: "asc",
+    const types = await prisma.type.findMany({
+      select: {
+        id: true,
+        name: true,
+        description: true,
+        color: true,
+        categoryType: true,
+        customRules: true
       },
-    ],
-  });
-  return res.status(200).json(types);
+      where: {
+        categoryType: categoryName?.toString() as CategoryType || undefined
+      },
+      orderBy: [
+        {
+          name: "asc",
+        },
+      ],
+    });
+    res.status(200).json(types);
+  }
 }

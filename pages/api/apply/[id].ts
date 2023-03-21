@@ -49,6 +49,20 @@ export default async function handler(
             id: true,
             createdAt: true,
             link: true,
+            quest: {
+                select: {
+                    id: true,
+                    title: true,
+                    description: true,
+                    organization: {
+                        select: {
+                            id: true,
+                            name: true,
+                            avatar: true,
+                        }
+                    }
+                }
+            },
             historyStatus: {
                 select: {
                     status: true,

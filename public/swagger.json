@@ -12,6 +12,74 @@
       }
     },
     "schemas": {
+      "Cv": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "cuid"
+          },
+          "text": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        }
+      },
+      "ApplyStatusHistory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "cuid",
+            "title": "ApplyStatusHistory.id"
+          },
+          "apply": {
+            "type": "object",
+            "$ref": "#/components/schemas/Apply",
+            "title": "ApplyStatusHistory.apply"
+          },
+          "applyId": {
+            "type": "string",
+            "format": "cuid"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "NEW",
+              "REQUEST_INFO",
+              "VERIFIED",
+              "DECLINED",
+              "DECLINED_CLIENT",
+              "INTERVIEW",
+              "SENT_OFFER",
+              "DECLINED_OFFER",
+              "TEST_PERIOD",
+              "APPROVED",
+              "FIRED",
+              "GET_OFFER"
+            ],
+            "$ref": "#/components/schemas/ApplyHistoryStatus",
+            "title": "ApplyStatusHistory.status"
+          },
+          "createdAt": {
+            "type": "string",
+            "title": "ApplyStatusHistory.createdAt"
+          }
+        },
+        "required": [
+          "id",
+          "apply",
+          "status",
+          "createdAt"
+        ],
+        "additionalProperties": false,
+        "title": "ApplyStatusHistory"
+      },
       "Type": {
         "type": "object",
         "properties": {
@@ -108,135 +176,94 @@
         "title": "Dynasty",
         "description": "@swagger components:\r\n schemas:\r\n   Dynasty:\r\n     type: object\r\n     properties:\r\n       name:\r\n         id: string\r\n         type: string\r\n         description: string\r\n         avatar: string"
       },
-      "Institute": {
+      "RefAccount": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "cuid",
-            "title": "Institute.id"
-          },
           "name": {
-            "type": "string",
-            "title": "Institute.name"
+            "id": "string",
+            "adminUser": "User",
+            "avatar": "string",
+            "title": "string",
+            "description": "string",
+            "users": "User[]",
+            "defaultRefAccount": "User[]",
+            "refLink": "RefLink[]",
+            "type": "RefAccountType",
+            "createdAt": "string",
+            "updatedAt": "string"
           },
-          "description": {
-            "type": "string",
-            "title": "Institute.description"
-          },
-          "linkWebsite": {
-            "type": "string",
-            "title": "Institute.linkWebsite"
-          },
-          "linkTelegram": {
-            "type": "string",
-            "title": "Institute.linkTelegram"
-          },
-          "linkTwitter": {
-            "type": "string",
-            "title": "Institute.linkTwitter"
-          },
-          "linkReddit": {
-            "type": "string",
-            "title": "Institute.linkReddit"
-          },
-          "linkDiscord": {
-            "type": "string",
-            "title": "Institute.linkDiscord"
-          },
-          "linkMedium": {
-            "type": "string",
-            "title": "Institute.linkMedium"
-          },
-          "contractAddress": {
-            "type": "string",
-            "title": "Institute.contractAddress"
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "description",
-          "linkWebsite",
-          "linkTelegram",
-          "linkTwitter",
-          "linkReddit",
-          "linkDiscord",
-          "linkMedium",
-          "contractAddress"
-        ],
-        "additionalProperties": false,
-        "title": "Institute",
-        "description": "@swagger components:\r\n schemas:\r\n   Institute:\r\n     type: object\r\n     properties:\r\n       id:\r\n         type: string\r\n         format: cuid\r\n       name:\r\n         type: string\r\n       description:\r\n         type: string\r\n       linkWebsite:\r\n         type: string\r\n       linkTelegram:\r\n         type: string\r\n       linkTwitter:\r\n         type: string\r\n       linkReddit:\r\n         type: string\r\n       linkDiscord:\r\n         type: string\r\n       linkMedium:\r\n         type: string\r\n       contractAddress:\r\n         type: string"
-      },
-      "Quest": {
-        "type": "object",
-        "properties": {
           "id": {
-            "type": "string",
-            "format": "cuid",
-            "title": "Quest.id"
+            "title": "RefAccount.id",
+            "type": "string"
+          },
+          "adminUser": {
+            "$ref": "#/components/schemas/User",
+            "title": "RefAccount.adminUser"
+          },
+          "avatar": {
+            "title": "RefAccount.avatar",
+            "type": "string"
           },
           "title": {
-            "type": "string",
-            "title": "Quest.title"
+            "title": "RefAccount.title",
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "title": "Quest.description"
+            "title": "RefAccount.description",
+            "type": "string"
           },
-          "dynasty": {
-            "$ref": "#/components/schemas/Dynasty",
-            "title": "Quest.dynasty"
+          "users": {
+            "items": {
+              "$ref": "#/components/schemas/User",
+              "title": "RefAccount.users.[]"
+            },
+            "title": "RefAccount.users",
+            "type": "array"
           },
-          "token": {
-            "$ref": "#/components/schemas/Token",
-            "title": "Quest.token"
+          "defaultRefAccount": {
+            "items": {
+              "$ref": "#/components/schemas/User",
+              "title": "RefAccount.defaultRefAccount.[]"
+            },
+            "title": "RefAccount.defaultRefAccount",
+            "type": "array"
+          },
+          "refLink": {
+            "items": {
+              "$ref": "#/components/schemas/RefLink",
+              "title": "RefAccount.refLink.[]"
+            },
+            "title": "RefAccount.refLink",
+            "type": "array"
           },
           "type": {
-            "$ref": "#/components/schemas/Type",
-            "title": "Quest.type"
+            "$ref": "#/components/schemas/RefAccountType",
+            "title": "RefAccount.type"
           },
-          "linkApply": {
-            "type": "string",
-            "title": "Quest.linkApply"
-          },
-          "rewardFrom": {
-            "type": "number",
-            "title": "Quest.rewardFrom"
-          },
-          "rewardTo": {
-            "type": "number",
-            "title": "Quest.rewardTo"
-          },
-          "textBlocks": {
-            "type": "string",
-            "title": "Quest.textBlocks"
+          "createdAt": {
+            "title": "RefAccount.createdAt",
+            "type": "string"
           },
           "updatedAt": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Quest.updatedAt"
-          },
-          "organization": {
-            "$ref": "#/components/schemas/Institute",
-            "title": "Quest.organization"
+            "title": "RefAccount.updatedAt",
+            "type": "string"
           }
         },
         "required": [
           "id",
+          "adminUser",
+          "avatar",
           "title",
           "description",
-          "dynasty",
-          "token",
+          "users",
+          "defaultRefAccount",
+          "refLink",
           "type",
-          "linkApply",
-          "textBlocks",
-          "updatedAt",
-          "organization"
+          "createdAt",
+          "updatedAt"
         ],
         "additionalProperties": false,
-        "title": "Quest"
+        "title": "RefAccount"
       },
       "RefLink": {
         "type": "object",
@@ -244,9 +271,10 @@
           "name": {
             "id": "string",
             "shortId": "string",
-            "questId": "string",
-            "createdById": "string",
-            "refAccountId": "string",
+            "quests": "Quest",
+            "refUserApply": "Apply[]",
+            "createdBy": "User",
+            "refAccount": "RefAccount",
             "createdAt": "string",
             "updatedAt": "string"
           },
@@ -258,17 +286,29 @@
             "title": "RefLink.shortId",
             "type": "string"
           },
-          "questId": {
-            "title": "RefLink.questId",
-            "type": "string"
+          "quests": {
+            "$ref": "#/components/schemas/Quest",
+            "title": "RefLink.quests"
           },
-          "createdById": {
-            "title": "RefLink.createdById",
-            "type": "string"
+          "refUserApply": {
+            "items": {
+              "$ref": "#/components/schemas/Apply",
+              "title": "RefLink.refUserApply.[]"
+            },
+            "title": "RefLink.refUserApply",
+            "type": "array"
+          },
+          "createdBy": {
+            "$ref": "#/components/schemas/User",
+            "title": "RefLink.createdBy"
           },
           "refAccountId": {
             "title": "RefLink.refAccountId",
             "type": "string"
+          },
+          "refAccount": {
+            "$ref": "#/components/schemas/RefAccount",
+            "title": "RefLink.refAccount"
           },
           "createdAt": {
             "title": "RefLink.createdAt",
@@ -282,35 +322,52 @@
         "required": [
           "id",
           "shortId",
-          "questId",
-          "createdById",
+          "quests",
+          "refUserApply",
+          "createdBy",
           "refAccountId",
+          "refAccount",
           "createdAt",
           "updatedAt"
         ],
         "additionalProperties": false,
-        "title": "RefLink",
-        "description": "@swagger components:\r\n schemas:\r\n   RefLink:\r\n     type: object\r\n     properties:\r\n       name:\r\n         id: string\r\n         shortId: string\r\n         questId: string\r\n         createdById: string\r\n         refAccountId: string\r\n         createdAt: string\r\n         updatedAt: string"
+        "title": "RefLink"
       },
-      "Token": {
+      "Tag": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "string",
+            "format": "cuid",
+            "title": "Tag.id"
+          },
           "name": {
             "type": "string",
-            "title": "Token.name"
+            "title": "Tag.name"
           },
-          "avatar": {
+          "description": {
             "type": "string",
-            "title": "Token.avatar"
+            "title": "Tag.description"
+          },
+          "createdAt": {
+            "type": "string",
+            "title": "Tag.createdAt"
+          },
+          "updatedAt": {
+            "type": "string",
+            "title": "Tag.updatedAt"
           }
         },
         "required": [
+          "id",
           "name",
-          "avatar"
+          "description",
+          "createdAt",
+          "updatedAt"
         ],
         "additionalProperties": false,
-        "title": "Token",
-        "description": "@swagger components:\r\n schemas:\r\n   Token:\r\n     type: object\r\n     properties:\r\n       name:\r\n         type: string\r\n       avatar:\r\n         type: string"
+        "title": "Tag",
+        "description": "@swagger components:\r\n schemas:\r\n   Tag:\r\n     type: object\r\n     properties:\r\n       id:\r\n         type: string\r\n         format: cuid\r\n       name:\r\n         type: string\r\n       description:\r\n         type: string\r\n       createdAt:\r\n         type: string\r\n       updatedAt:\r\n         type: string"
       },
       "WhitelistSubscribes": {
         "type": "object",
@@ -341,6 +398,97 @@
         "additionalProperties": false,
         "title": "WhitelistSubscribes",
         "description": "@swagger components:\r\n schemas:\r\n   WhitelistSubscribes:\r\n     type: object\r\n     properties:\r\n       name:\r\n         id: string\r\n         email: string\r\n         createdAt: string"
+      },
+      "Apply": {
+        "properties": {
+          "id": {
+            "title": "Apply.id",
+            "type": "string"
+          },
+          "link": {
+            "$ref": "#/components/schemas/RefLink",
+            "title": "Apply.link"
+          },
+          "quest": {
+            "$ref": "#/components/schemas/Quest",
+            "title": "Apply.quest"
+          },
+          "historyStatus": {
+            "items": {
+              "$ref": "#/components/schemas/ApplyStatusHistory",
+              "title": "Apply.historyStatus.[]"
+            },
+            "title": "Apply.historyStatus",
+            "type": "array"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User",
+            "title": "Apply.user"
+          },
+          "cv": {
+            "$ref": "#/components/schemas/ApplyCV",
+            "title": "Apply.cv"
+          },
+          "createdAt": {
+            "title": "Apply.createdAt",
+            "type": "string"
+          },
+          "updatedAt": {
+            "title": "Apply.updatedAt",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "link",
+          "quest",
+          "historyStatus",
+          "user",
+          "cv",
+          "createdAt",
+          "updatedAt"
+        ],
+        "additionalProperties": false,
+        "title": "Apply",
+        "type": "object"
+      },
+      "ApplyCV": {
+        "properties": {
+          "id": {
+            "title": "ApplyCV.id",
+            "type": "string"
+          },
+          "text": {
+            "title": "ApplyCV.text",
+            "type": "string"
+          },
+          "createdAt": {
+            "title": "ApplyCV.createdAt",
+            "type": "string"
+          },
+          "updatedAt": {
+            "title": "ApplyCV.updatedAt",
+            "type": "string"
+          },
+          "apply": {
+            "items": {
+              "$ref": "#/components/schemas/Apply",
+              "title": "ApplyCV.apply.[]"
+            },
+            "title": "ApplyCV.apply",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "text",
+          "createdAt",
+          "updatedAt",
+          "apply"
+        ],
+        "additionalProperties": false,
+        "title": "ApplyCV",
+        "type": "object"
       },
       "BotSubscription": {
         "properties": {
@@ -566,6 +714,590 @@
         ],
         "title": "BotUserStatus",
         "type": "string"
+      },
+      "EntityStates": {
+        "enum": [
+          "PUBLISHED",
+          "DRAFT",
+          "DELETED"
+        ],
+        "title": "EntityStates",
+        "type": "string"
+      },
+      "ApplyStatus": {
+        "enum": [
+          "NEW",
+          "VERIFIED",
+          "INVITE",
+          "SENT_OFFER",
+          "GET_OFFER",
+          "DECLINED_OFFER",
+          "TEST_PERIOD",
+          "APPROVED",
+          "DECLINED"
+        ],
+        "title": "ApplyStatus",
+        "type": "string"
+      },
+      "ApplyHistoryStatus": {
+        "enum": [
+          "NEW",
+          "REQUEST_INFO",
+          "VERIFIED",
+          "DECLINED",
+          "DECLINED_CLIENT",
+          "INTERVIEW",
+          "SENT_OFFER",
+          "DECLINED_OFFER",
+          "TEST_PERIOD",
+          "APPROVED",
+          "FIRED",
+          "GET_OFFER"
+        ],
+        "title": "ApplyHistoryStatus",
+        "type": "string"
+      },
+      "RefAccountType": {
+        "enum": [
+          "PERSONAL",
+          "COMMUNITY"
+        ],
+        "title": "RefAccountType",
+        "type": "string"
+      },
+      "Institute": {
+        "properties": {
+          "id": {
+            "title": "Institute.id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Institute.name",
+            "type": "string"
+          },
+          "description": {
+            "title": "Institute.description",
+            "type": "string"
+          },
+          "avatar": {
+            "title": "Institute.avatar",
+            "type": "string"
+          },
+          "cover": {
+            "title": "Institute.cover",
+            "type": "string"
+          },
+          "color": {
+            "title": "Institute.color",
+            "type": "string"
+          },
+          "market": {
+            "title": "Institute.market",
+            "type": "string"
+          },
+          "treasury": {
+            "title": "Institute.treasury",
+            "type": "string"
+          },
+          "dateFounded": {
+            "title": "Institute.dateFounded",
+            "type": "string"
+          },
+          "verified": {
+            "title": "Institute.verified",
+            "type": "boolean"
+          },
+          "textBlocks": {
+            "title": "Institute.textBlocks",
+            "type": "string"
+          },
+          "tags": {
+            "items": {
+              "$ref": "#/components/schemas/Tag",
+              "title": "Institute.tags.[]"
+            },
+            "title": "Institute.tags",
+            "type": "array"
+          },
+          "type": {
+            "$ref": "#/components/schemas/Type",
+            "title": "Institute.type"
+          },
+          "linkWebsite": {
+            "title": "Institute.linkWebsite",
+            "type": "string"
+          },
+          "linkTelegram": {
+            "title": "Institute.linkTelegram",
+            "type": "string"
+          },
+          "linkTwitter": {
+            "title": "Institute.linkTwitter",
+            "type": "string"
+          },
+          "linkReddit": {
+            "title": "Institute.linkReddit",
+            "type": "string"
+          },
+          "linkDiscord": {
+            "title": "Institute.linkDiscord",
+            "type": "string"
+          },
+          "linkMedium": {
+            "title": "Institute.linkMedium",
+            "type": "string"
+          },
+          "contractAddress": {
+            "title": "Institute.contractAddress",
+            "type": "string"
+          },
+          "createdAt": {
+            "title": "Institute.createdAt",
+            "type": "string"
+          },
+          "updatedAt": {
+            "title": "Institute.updatedAt",
+            "type": "string"
+          },
+          "state": {
+            "$ref": "#/components/schemas/EntityStates",
+            "title": "Institute.state"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "description",
+          "avatar",
+          "cover",
+          "color",
+          "market",
+          "treasury",
+          "dateFounded",
+          "verified",
+          "textBlocks",
+          "tags",
+          "type",
+          "linkWebsite",
+          "linkTelegram",
+          "linkTwitter",
+          "linkReddit",
+          "linkDiscord",
+          "linkMedium",
+          "contractAddress",
+          "createdAt",
+          "updatedAt",
+          "state"
+        ],
+        "additionalProperties": false,
+        "title": "Institute",
+        "type": "object"
+      },
+      "Quest": {
+        "properties": {
+          "id": {
+            "title": "Quest.id",
+            "type": "string"
+          },
+          "title": {
+            "title": "Quest.title",
+            "type": "string"
+          },
+          "description": {
+            "title": "Quest.description",
+            "type": "string"
+          },
+          "reffLink": {
+            "title": "Quest.reffLink",
+            "type": "string"
+          },
+          "dynasty": {
+            "$ref": "#/components/schemas/Dynasty",
+            "title": "Quest.dynasty"
+          },
+          "token": {
+            "$ref": "#/components/schemas/Token",
+            "title": "Quest.token"
+          },
+          "type": {
+            "$ref": "#/components/schemas/Type",
+            "title": "Quest.type"
+          },
+          "linkApply": {
+            "title": "Quest.linkApply",
+            "type": "string"
+          },
+          "rewardFrom": {
+            "title": "Quest.rewardFrom",
+            "type": "number"
+          },
+          "reffReward": {
+            "title": "Quest.reffReward",
+            "type": "number"
+          },
+          "rewardTo": {
+            "title": "Quest.rewardTo",
+            "type": "number"
+          },
+          "textBlocks": {
+            "title": "Quest.textBlocks",
+            "type": "string"
+          },
+          "createdAt": {
+            "title": "Quest.createdAt",
+            "type": "string"
+          },
+          "updatedAt": {
+            "title": "Quest.updatedAt",
+            "type": "string"
+          },
+          "organization": {
+            "$ref": "#/components/schemas/Institute",
+            "title": "Quest.organization"
+          },
+          "tags": {
+            "items": {
+              "$ref": "#/components/schemas/Tag",
+              "title": "Quest.tags.[]"
+            },
+            "title": "Quest.tags",
+            "type": "array"
+          },
+          "tokenReward": {
+            "$ref": "#/components/schemas/Token",
+            "title": "Quest.tokenReward"
+          },
+          "state": {
+            "$ref": "#/components/schemas/EntityStates",
+            "title": "Quest.state"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "description",
+          "reffLink",
+          "dynasty",
+          "token",
+          "type",
+          "linkApply",
+          "textBlocks",
+          "createdAt",
+          "updatedAt",
+          "organization",
+          "tags",
+          "tokenReward",
+          "state"
+        ],
+        "additionalProperties": false,
+        "title": "Quest",
+        "type": "object"
+      },
+      "QuestPost": {
+        "properties": {
+          "title": {
+            "title": "QuestPost.title",
+            "type": "string"
+          },
+          "description": {
+            "title": "QuestPost.description",
+            "type": "string"
+          },
+          "tags": {
+            "items": [
+              {
+                "properties": {
+                  "value": {
+                    "title": "QuestPost.tags.0.value",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "value"
+                ],
+                "additionalProperties": false,
+                "title": "QuestPost.tags.0",
+                "type": "object"
+              }
+            ],
+            "additionalItems": false,
+            "minItems": 1,
+            "title": "QuestPost.tags",
+            "type": "array"
+          },
+          "reffLink": {
+            "title": "QuestPost.reffLink",
+            "type": "string"
+          },
+          "tokenReward": {
+            "properties": {
+              "value": {
+                "title": "QuestPost.tokenReward.value",
+                "type": "string"
+              }
+            },
+            "required": [
+              "value"
+            ],
+            "additionalProperties": false,
+            "title": "QuestPost.tokenReward",
+            "type": "object"
+          },
+          "reffReward": {
+            "title": "QuestPost.reffReward",
+            "type": "number"
+          },
+          "state": {
+            "$ref": "#/components/schemas/EntityStates",
+            "title": "QuestPost.state"
+          },
+          "organization": {
+            "properties": {
+              "value": {
+                "title": "QuestPost.organization.value",
+                "type": "string"
+              }
+            },
+            "required": [
+              "value"
+            ],
+            "additionalProperties": false,
+            "title": "QuestPost.organization",
+            "type": "object"
+          },
+          "dynasty": {
+            "properties": {
+              "value": {
+                "title": "QuestPost.dynasty.value",
+                "type": "string"
+              }
+            },
+            "required": [
+              "value"
+            ],
+            "additionalProperties": false,
+            "title": "QuestPost.dynasty",
+            "type": "object"
+          },
+          "type": {
+            "properties": {
+              "value": {
+                "title": "QuestPost.type.value",
+                "type": "string"
+              }
+            },
+            "required": [
+              "value"
+            ],
+            "additionalProperties": false,
+            "title": "QuestPost.type",
+            "type": "object"
+          },
+          "linkApply": {
+            "title": "QuestPost.linkApply",
+            "type": "string"
+          },
+          "token": {
+            "properties": {
+              "value": {
+                "title": "QuestPost.token.value",
+                "type": "string"
+              }
+            },
+            "required": [
+              "value"
+            ],
+            "additionalProperties": false,
+            "title": "QuestPost.token",
+            "type": "object"
+          },
+          "rewardFrom": {
+            "title": "QuestPost.rewardFrom",
+            "type": "number"
+          },
+          "rewardTo": {
+            "title": "QuestPost.rewardTo",
+            "type": "number"
+          },
+          "textBlocks": {
+            "title": "QuestPost.textBlocks",
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "description",
+          "tags",
+          "reffLink",
+          "state",
+          "organization",
+          "dynasty",
+          "type",
+          "linkApply",
+          "textBlocks"
+        ],
+        "additionalProperties": false,
+        "title": "QuestPost",
+        "type": "object"
+      },
+      "Token": {
+        "properties": {
+          "id": {
+            "title": "Token.id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Token.name",
+            "type": "string"
+          },
+          "avatar": {
+            "title": "Token.avatar",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "avatar"
+        ],
+        "additionalProperties": false,
+        "title": "Token",
+        "description": "@swagger components:\r\n schemas:\r\n   Token:\r\n     type: object\r\n     properties:\r\n       id:\r\n         type: string\r\n       name:\r\n         type: string\r\n       avatar:\r\n         type: string",
+        "type": "object"
+      },
+      "User": {
+        "properties": {
+          "id": {
+            "title": "User.id",
+            "type": "string"
+          },
+          "username": {
+            "title": "User.username",
+            "type": "string"
+          },
+          "contactEmail": {
+            "title": "User.contactEmail",
+            "type": "string"
+          },
+          "emailVerified": {
+            "title": "User.emailVerified",
+            "type": "string"
+          },
+          "image": {
+            "title": "User.image",
+            "type": "string"
+          },
+          "firstName": {
+            "title": "User.firstName",
+            "type": "string"
+          },
+          "lastName": {
+            "title": "User.lastName",
+            "type": "string"
+          },
+          "description": {
+            "title": "User.description",
+            "type": "string"
+          },
+          "resumeLink": {
+            "title": "User.resumeLink",
+            "type": "string"
+          },
+          "twitterLink": {
+            "title": "User.twitterLink",
+            "type": "string"
+          },
+          "githubLink": {
+            "title": "User.githubLink",
+            "type": "string"
+          },
+          "telegram": {
+            "title": "User.telegram",
+            "type": "string"
+          },
+          "dynasty": {
+            "items": {
+              "$ref": "#/components/schemas/Dynasty",
+              "title": "User.dynasty.[]"
+            },
+            "title": "User.dynasty",
+            "type": "array"
+          },
+          "publicAddress": {
+            "title": "User.publicAddress",
+            "type": "string"
+          },
+          "adminUser": {
+            "items": {
+              "$ref": "#/components/schemas/RefAccount",
+              "title": "User.adminUser.[]"
+            },
+            "title": "User.adminUser",
+            "type": "array"
+          },
+          "defaultRefAccount": {
+            "$ref": "#/components/schemas/RefAccount",
+            "title": "User.defaultRefAccount"
+          },
+          "apply": {
+            "items": {
+              "$ref": "#/components/schemas/Apply",
+              "title": "User.apply.[]"
+            },
+            "title": "User.apply",
+            "type": "array"
+          },
+          "refLink": {
+            "items": {
+              "$ref": "#/components/schemas/RefLink",
+              "title": "User.refLink.[]"
+            },
+            "title": "User.refLink",
+            "type": "array"
+          },
+          "refAccount": {
+            "items": {
+              "$ref": "#/components/schemas/RefAccount",
+              "title": "User.refAccount.[]"
+            },
+            "title": "User.refAccount",
+            "type": "array"
+          },
+          "createdAt": {
+            "title": "User.createdAt",
+            "type": "string"
+          },
+          "updatedAt": {
+            "title": "User.updatedAt",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "username",
+          "contactEmail",
+          "emailVerified",
+          "image",
+          "firstName",
+          "lastName",
+          "description",
+          "resumeLink",
+          "twitterLink",
+          "githubLink",
+          "telegram",
+          "dynasty",
+          "publicAddress",
+          "adminUser",
+          "defaultRefAccount",
+          "apply",
+          "refLink",
+          "refAccount",
+          "createdAt",
+          "updatedAt"
+        ],
+        "additionalProperties": false,
+        "title": "User",
+        "type": "object"
       }
     }
   },
@@ -575,6 +1307,61 @@
     }
   ],
   "paths": {
+    "/api/apply": {
+      "get": {
+        "tags": [
+          "Apply"
+        ],
+        "description": "Returns all apply",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "description": "take filter by organizationId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "take",
+            "description": "take number of rows (default 100)",
+            "in": "query",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "skip",
+            "description": "how many rows to skip (default 0)",
+            "in": "query",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "sort",
+            "description": "desc or asc",
+            "in": "query",
+            "default": "desc",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Apply"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/dynasty": {
       "get": {
         "tags": [
@@ -607,6 +1394,13 @@
         "description": "Returns all institutes",
         "parameters": [
           {
+            "name": "orgList",
+            "description": "get only institutes from this list",
+            "in": "query",
+            "required": false,
+            "type": "array"
+          },
+          {
             "name": "take",
             "description": "take number of rows (default 10)",
             "in": "query",
@@ -626,6 +1420,39 @@
             "in": "query",
             "default": "desc",
             "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Institute"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/institute/{instituteId}": {
+      "get": {
+        "tags": [
+          "Institutes"
+        ],
+        "description": "Returns all institutes",
+        "parameters": [
+          {
+            "name": "instituteId",
+            "description": "id of organization",
+            "in": "path",
+            "required": true,
             "type": "string"
           }
         ],
@@ -689,8 +1516,87 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "type",
+            "description": "filter by type of job",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "search",
+            "description": "filter by name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "state",
+            "description": "filter by state",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "rewards",
+            "description": "filter by rewards",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "count",
+            "description": "return count of rows",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "withApply",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "applySelect",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
+        "responses": {
+          "200": {
+            "description": "success result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Quest"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Quests"
+        ],
+        "description": "Add new job",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/QuestPost"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "success result",
@@ -722,8 +1628,56 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "instituteId",
+            "description": "filter by instituteId of institute",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
+        "responses": {
+          "200": {
+            "description": "success result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Quest"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Quests"
+        ],
+        "description": "Update quest by id",
+        "parameters": [
+          {
+            "name": "questId",
+            "description": "id of quest",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/QuestPost"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "success result",
@@ -924,12 +1878,69 @@
         }
       }
     },
+    "/api/tag": {
+      "get": {
+        "tags": [
+          "Tag"
+        ],
+        "description": "Returns all tags",
+        "responses": {
+          "200": {
+            "description": "success result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Tag"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/token": {
+      "get": {
+        "tags": [
+          "Token"
+        ],
+        "description": "Returns all tokens",
+        "responses": {
+          "200": {
+            "description": "success result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Token"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/type": {
       "get": {
         "tags": [
           "Types"
         ],
         "description": "Returns all types",
+        "parameters": [
+          {
+            "name": "categoryName",
+            "description": "filter by category name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "success result",
@@ -940,6 +1951,54 @@
                   "items": {
                     "type": "object",
                     "$ref": "#/components/schemas/Type"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Returns all users",
+        "parameters": [
+          {
+            "name": "take",
+            "description": "take number of rows (default 100)",
+            "in": "query",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "skip",
+            "description": "how many rows to skip (default 0)",
+            "in": "query",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "sort",
+            "description": "desc or asc",
+            "in": "query",
+            "default": "desc",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/User"
                   }
                 }
               }

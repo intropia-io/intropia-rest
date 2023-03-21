@@ -21,6 +21,9 @@ components:
         description:
           title: Quest.description
           type: string
+        reffLink:
+          title: Quest.reffLink
+          type: string
         dynasty:
           $ref: '#/components/schemas/Dynasty'
           title: Quest.dynasty
@@ -36,11 +39,17 @@ components:
         rewardFrom:
           title: Quest.rewardFrom
           type: number
+        reffReward:
+          title: Quest.reffReward
+          type: number
         rewardTo:
           title: Quest.rewardTo
           type: number
         textBlocks:
           title: Quest.textBlocks
+          type: string
+        createdAt:
+          title: Quest.createdAt
           type: string
         updatedAt:
           title: Quest.updatedAt
@@ -48,17 +57,34 @@ components:
         organization:
           $ref: '#/components/schemas/Institute'
           title: Quest.organization
+        tags:
+          items:
+            $ref: '#/components/schemas/Tag'
+            title: Quest.tags.[]
+          title: Quest.tags
+          type: array
+        tokenReward:
+          $ref: '#/components/schemas/Token'
+          title: Quest.tokenReward
+        state:
+          $ref: '#/components/schemas/EntityStates'
+          title: Quest.state
       required:
         - id
         - title
         - description
+        - reffLink
         - dynasty
         - token
         - type
         - linkApply
         - textBlocks
+        - createdAt
         - updatedAt
         - organization
+        - tags
+        - tokenReward
+        - state
       additionalProperties: false
       title: Quest
       type: object

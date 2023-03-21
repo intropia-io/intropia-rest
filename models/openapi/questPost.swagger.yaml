@@ -1,0 +1,120 @@
+openapi: 3.0.0
+info:
+  title: Converted from questPost.swagger.yaml with typeconv
+  version: '1'
+  x-id: questPost.swagger.yaml
+  x-comment: >-
+    Generated from models\questPost.ts by core-types-json-schema
+    (https://github.com/grantila/core-types-json-schema) on behalf of typeconv
+    (https://github.com/grantila/typeconv)
+paths: {}
+components:
+  schemas:
+    QuestPost:
+      properties:
+        title:
+          title: QuestPost.title
+          type: string
+        description:
+          title: QuestPost.description
+          type: string
+        tags:
+          items:
+            - properties:
+                value:
+                  title: QuestPost.tags.0.value
+                  type: string
+              required:
+                - value
+              additionalProperties: false
+              title: QuestPost.tags.0
+              type: object
+          additionalItems: false
+          minItems: 1
+          title: QuestPost.tags
+          type: array
+        reffLink:
+          title: QuestPost.reffLink
+          type: string
+        tokenReward:
+          properties:
+            value:
+              title: QuestPost.tokenReward.value
+              type: string
+          required:
+            - value
+          additionalProperties: false
+          title: QuestPost.tokenReward
+          type: object
+        reffReward:
+          title: QuestPost.reffReward
+          type: number
+        state:
+          $ref: '#/components/schemas/EntityStates'
+          title: QuestPost.state
+        organization:
+          properties:
+            value:
+              title: QuestPost.organization.value
+              type: string
+          required:
+            - value
+          additionalProperties: false
+          title: QuestPost.organization
+          type: object
+        dynasty:
+          properties:
+            value:
+              title: QuestPost.dynasty.value
+              type: string
+          required:
+            - value
+          additionalProperties: false
+          title: QuestPost.dynasty
+          type: object
+        type:
+          properties:
+            value:
+              title: QuestPost.type.value
+              type: string
+          required:
+            - value
+          additionalProperties: false
+          title: QuestPost.type
+          type: object
+        linkApply:
+          title: QuestPost.linkApply
+          type: string
+        token:
+          properties:
+            value:
+              title: QuestPost.token.value
+              type: string
+          required:
+            - value
+          additionalProperties: false
+          title: QuestPost.token
+          type: object
+        rewardFrom:
+          title: QuestPost.rewardFrom
+          type: number
+        rewardTo:
+          title: QuestPost.rewardTo
+          type: number
+        textBlocks:
+          title: QuestPost.textBlocks
+          type: string
+      required:
+        - title
+        - description
+        - tags
+        - reffLink
+        - state
+        - organization
+        - dynasty
+        - type
+        - linkApply
+        - textBlocks
+      additionalProperties: false
+      title: QuestPost
+      type: object

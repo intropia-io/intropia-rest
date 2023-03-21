@@ -1,0 +1,117 @@
+openapi: 3.0.0
+info:
+  title: Converted from user.swagger.yaml with typeconv
+  version: '1'
+  x-id: user.swagger.yaml
+  x-comment: >-
+    Generated from models\user.ts by core-types-json-schema
+    (https://github.com/grantila/core-types-json-schema) on behalf of typeconv
+    (https://github.com/grantila/typeconv)
+paths: {}
+components:
+  schemas:
+    User:
+      properties:
+        id:
+          title: User.id
+          type: string
+        username:
+          title: User.username
+          type: string
+        contactEmail:
+          title: User.contactEmail
+          type: string
+        emailVerified:
+          title: User.emailVerified
+          type: string
+        image:
+          title: User.image
+          type: string
+        firstName:
+          title: User.firstName
+          type: string
+        lastName:
+          title: User.lastName
+          type: string
+        description:
+          title: User.description
+          type: string
+        resumeLink:
+          title: User.resumeLink
+          type: string
+        twitterLink:
+          title: User.twitterLink
+          type: string
+        githubLink:
+          title: User.githubLink
+          type: string
+        telegram:
+          title: User.telegram
+          type: string
+        dynasty:
+          items:
+            $ref: '#/components/schemas/Dynasty'
+            title: User.dynasty.[]
+          title: User.dynasty
+          type: array
+        publicAddress:
+          title: User.publicAddress
+          type: string
+        adminUser:
+          items:
+            $ref: '#/components/schemas/RefAccount'
+            title: User.adminUser.[]
+          title: User.adminUser
+          type: array
+        defaultRefAccount:
+          $ref: '#/components/schemas/RefAccount'
+          title: User.defaultRefAccount
+        apply:
+          items:
+            $ref: '#/components/schemas/Apply'
+            title: User.apply.[]
+          title: User.apply
+          type: array
+        refLink:
+          items:
+            $ref: '#/components/schemas/RefLink'
+            title: User.refLink.[]
+          title: User.refLink
+          type: array
+        refAccount:
+          items:
+            $ref: '#/components/schemas/RefAccount'
+            title: User.refAccount.[]
+          title: User.refAccount
+          type: array
+        createdAt:
+          title: User.createdAt
+          type: string
+        updatedAt:
+          title: User.updatedAt
+          type: string
+      required:
+        - id
+        - username
+        - contactEmail
+        - emailVerified
+        - image
+        - firstName
+        - lastName
+        - description
+        - resumeLink
+        - twitterLink
+        - githubLink
+        - telegram
+        - dynasty
+        - publicAddress
+        - adminUser
+        - defaultRefAccount
+        - apply
+        - refLink
+        - refAccount
+        - createdAt
+        - updatedAt
+      additionalProperties: false
+      title: User
+      type: object

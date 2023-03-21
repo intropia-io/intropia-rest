@@ -1,0 +1,39 @@
+openapi: 3.0.0
+info:
+  title: Converted from tag.swagger.yaml with typeconv
+  version: '1'
+  x-id: tag.swagger.yaml
+  x-comment: >-
+    Generated from models\tag.ts by core-types-json-schema
+    (https://github.com/grantila/core-types-json-schema) on behalf of typeconv
+    (https://github.com/grantila/typeconv)
+paths: {}
+components:
+  schemas:
+    Tag:
+      properties:
+        id:
+          title: Tag.id
+          type: string
+        name:
+          title: Tag.name
+          type: string
+        description:
+          title: Tag.description
+          type: string
+        createdAt:
+          title: Tag.createdAt
+          type: string
+        updatedAt:
+          title: Tag.updatedAt
+          type: string
+      required:
+        - id
+        - name
+        - description
+        - createdAt
+        - updatedAt
+      additionalProperties: false
+      title: Tag
+      description: "@swagger components:\r\n schemas:\r\n   Tag:\r\n     type: object\r\n     properties:\r\n       id:\r\n         type: string\r\n         format: cuid\r\n       name:\r\n         type: string\r\n       description:\r\n         type: string\r\n       createdAt:\r\n         type: string\r\n       updatedAt:\r\n         type: string"
+      type: object

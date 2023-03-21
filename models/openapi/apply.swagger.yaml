@@ -1,0 +1,53 @@
+openapi: 3.0.0
+info:
+  title: Converted from apply.swagger.yaml with typeconv
+  version: '1'
+  x-id: apply.swagger.yaml
+  x-comment: >-
+    Generated from models\apply.ts by core-types-json-schema
+    (https://github.com/grantila/core-types-json-schema) on behalf of typeconv
+    (https://github.com/grantila/typeconv)
+paths: {}
+components:
+  schemas:
+    Apply:
+      properties:
+        id:
+          title: Apply.id
+          type: string
+        link:
+          $ref: '#/components/schemas/RefLink'
+          title: Apply.link
+        quest:
+          $ref: '#/components/schemas/Quest'
+          title: Apply.quest
+        historyStatus:
+          items:
+            $ref: '#/components/schemas/ApplyStatusHistory'
+            title: Apply.historyStatus.[]
+          title: Apply.historyStatus
+          type: array
+        user:
+          $ref: '#/components/schemas/User'
+          title: Apply.user
+        cv:
+          $ref: '#/components/schemas/ApplyCV'
+          title: Apply.cv
+        createdAt:
+          title: Apply.createdAt
+          type: string
+        updatedAt:
+          title: Apply.updatedAt
+          type: string
+      required:
+        - id
+        - link
+        - quest
+        - historyStatus
+        - user
+        - cv
+        - createdAt
+        - updatedAt
+      additionalProperties: false
+      title: Apply
+      type: object

@@ -55,3 +55,45 @@ components:
         - DELETED
       title: BotUserStatus
       type: string
+    EntityStates:
+      enum:
+        - PUBLISHED
+        - DRAFT
+        - DELETED
+      title: EntityStates
+      type: string
+    ApplyStatus:
+      enum:
+        - NEW
+        - VERIFIED
+        - INVITE
+        - SENT_OFFER
+        - GET_OFFER
+        - DECLINED_OFFER
+        - TEST_PERIOD
+        - APPROVED
+        - DECLINED
+      title: ApplyStatus
+      type: string
+    ApplyHistoryStatus:
+      enum:
+        - NEW
+        - REQUEST_INFO
+        - VERIFIED
+        - DECLINED
+        - DECLINED_CLIENT
+        - INTERVIEW
+        - SENT_OFFER
+        - DECLINED_OFFER
+        - TEST_PERIOD
+        - APPROVED
+        - FIRED
+        - GET_OFFER
+      title: ApplyHistoryStatus
+      type: string
+    RefAccountType:
+      enum:
+        - PERSONAL
+        - COMMUNITY
+      title: RefAccountType
+      type: string

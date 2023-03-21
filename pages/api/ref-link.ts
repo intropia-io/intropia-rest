@@ -38,6 +38,6 @@ export default async function handler(
 
 
 
-  const types = await prisma.refLink.findMany({});
-  return res.status(200).json(types);
+  const refLinks = await prisma.refLink.findMany({});
+  return res.status(200).json(refLinks);
 }

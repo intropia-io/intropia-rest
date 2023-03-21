@@ -1,30 +1,14 @@
 /**
  * @swagger
- * /api/institute:
+ * /api/institute/{instituteId}:
  *   get:
  *     tags: [Institutes]
  *     description: Returns all institutes
  *     parameters:
- *       - name: orgList
- *         description: get only institutes from this list
- *         in: query
- *         required: false
- *         type: array
- *       - name: take
- *         description: take number of rows (default 10)
- *         in: query
- *         required: false
- *         type: number
- *       - name: skip
- *         description: how many rows to skip (default 0)
- *         in: query
- *         required: false
- *         type: number
- *       - name: sort
- *         description: asc
- *         in: query
- *         default: desc
- *         required: false
+ *       - name: instituteId
+ *         description: id of organization
+ *         in: path
+ *         required: true
  *         type: string
  *     responses:
  *       200:
@@ -39,7 +23,7 @@
  */
 
 import type { NextApiRequest, NextApiResponse } from "next";
-import { hasRights } from "../../prisma/hasRights";
+import { hasRights } from "../../../prisma/hasRights";
 import { prisma } from "@intropia-io/prisma-schema";
 
 export default async function handler(
@@ -55,13 +39,12 @@ export default async function handler(
   if (!_hasRights)
     return res.status(400).json({ error: "auth not correct" });
 
-  const {
-    query: { take, skip, sort, orgList },
-  } = req;
+  const { instituteId } = req.query;
 
-  const quests = await prisma.organizations.findMany({
-    take: take ? parseInt(take.toString()) : 10,
-    skip: skip ? parseInt(skip.toString()) : undefined,
+  const {
+    query: { },
+  } = req;
+  const quests = await prisma.organizations.findUnique({
     select: {
       id: true,
       name: true,
@@ -87,13 +70,8 @@ export default async function handler(
       state: true,
     },
     where: {
-      id: orgList ? { in: orgList.toString().split(",") } : undefined,
+      id: instituteId?.toString()
     },
-    orderBy: [
-      {
-        name: sort === "desc" ? sort : "asc",
-      },
-    ],
   });
   return res.status(200).json(quests);
 }

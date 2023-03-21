@@ -12,6 +12,9 @@ components:
   schemas:
     Token:
       properties:
+        id:
+          title: Token.id
+          type: string
         name:
           title: Token.name
           type: string
@@ -19,9 +22,10 @@ components:
           title: Token.avatar
           type: string
       required:
+        - id
         - name
         - avatar
       additionalProperties: false
       title: Token
-      description: "@swagger components:\r\n schemas:\r\n   Token:\r\n     type: object\r\n     properties:\r\n       name:\r\n         type: string\r\n       avatar:\r\n         type: string"
+      description: "@swagger components:\r\n schemas:\r\n   Token:\r\n     type: object\r\n     properties:\r\n       id:\r\n         type: string\r\n       name:\r\n         type: string\r\n       avatar:\r\n         type: string"
       type: object

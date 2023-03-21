@@ -18,15 +18,24 @@ components:
         shortId:
           title: RefLink.shortId
           type: string
-        questId:
-          title: RefLink.questId
-          type: string
-        createdById:
-          title: RefLink.createdById
-          type: string
+        quests:
+          $ref: '#/components/schemas/Quest'
+          title: RefLink.quests
+        refUserApply:
+          items:
+            $ref: '#/components/schemas/Apply'
+            title: RefLink.refUserApply.[]
+          title: RefLink.refUserApply
+          type: array
+        createdBy:
+          $ref: '#/components/schemas/User'
+          title: RefLink.createdBy
         refAccountId:
           title: RefLink.refAccountId
           type: string
+        refAccount:
+          $ref: '#/components/schemas/RefAccount'
+          title: RefLink.refAccount
         createdAt:
           title: RefLink.createdAt
           type: string
@@ -36,12 +45,13 @@ components:
       required:
         - id
         - shortId
-        - questId
-        - createdById
+        - quests
+        - refUserApply
+        - createdBy
         - refAccountId
+        - refAccount
         - createdAt
         - updatedAt
       additionalProperties: false
       title: RefLink
-      description: "@swagger components:\r\n schemas:\r\n   RefLink:\r\n     type: object\r\n     properties:\r\n       name:\r\n         id: string\r\n         shortId: string\r\n         questId: string\r\n         createdById: string\r\n         refAccountId: string\r\n         createdAt: string\r\n         updatedAt: string"
       type: object

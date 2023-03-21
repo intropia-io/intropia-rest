@@ -1,17 +1,12 @@
 /**
  * @swagger
- * /api/institute:
+ * /api/users:
  *   get:
- *     tags: [Institutes]
- *     description: Returns all institutes
+ *     tags: [Users]
+ *     description: Returns all users
  *     parameters:
- *       - name: orgList
- *         description: get only institutes from this list
- *         in: query
- *         required: false
- *         type: array
  *       - name: take
- *         description: take number of rows (default 10)
+ *         description: take number of rows (default 100)
  *         in: query
  *         required: false
  *         type: number
@@ -21,7 +16,7 @@
  *         required: false
  *         type: number
  *       - name: sort
- *         description: asc
+ *         description: desc or asc
  *         in: query
  *         default: desc
  *         required: false
@@ -35,12 +30,12 @@
  *               type: array
  *               items:
  *                 type: object
- *                 $ref: '#/components/schemas/Institute'
+ *                 $ref: '#/components/schemas/User'
  */
 
 import type { NextApiRequest, NextApiResponse } from "next";
-import { hasRights } from "../../prisma/hasRights";
 import { prisma } from "@intropia-io/prisma-schema";
+import { hasRights } from "../../prisma/hasRights";
 
 export default async function handler(
   req: NextApiRequest,
@@ -51,49 +46,44 @@ export default async function handler(
     return
   }
   const token = req.headers.authorization?.split(" ")[1];
-  const _hasRights = await hasRights({ token: token! });
+  const _hasRights = await hasRights({ token: token!, type: "INHOUSE" });
   if (!_hasRights)
     return res.status(400).json({ error: "auth not correct" });
 
   const {
-    query: { take, skip, sort, orgList },
+    query: { take, skip, sort }
   } = req;
-
-  const quests = await prisma.organizations.findMany({
-    take: take ? parseInt(take.toString()) : 10,
+  const users = await prisma.user.findMany({
+    take: take ? parseInt(take.toString()) : 100,
     skip: skip ? parseInt(skip.toString()) : undefined,
     select: {
       id: true,
-      name: true,
+      username: true,
+      contactEmail: true,
+      emailVerified: true,
+      image: true,
+      firstName: true,
+      lastName: true,
       description: true,
-      avatar: true,
-      cover: true,
-      color: true,
-      market: true,
-      treasury: true,
-      dateFounded: true,
-      verified: true,
+      resumeLink: true,
+      twitterLink: true,
+      githubLink: true,
+      telegram: true,
+      dynasty: true,
+      publicAddress: true,
+      adminUser: true,
+      defaultRefAccount: true,
+      apply: true,
+      refLink: true,
+      refAccount: true,
       createdAt: true,
       updatedAt: true,
-      textBlocks: true,
-      tags: true,
-      linkWebsite: true,
-      linkTelegram: true,
-      linkTwitter: true,
-      linkReddit: true,
-      linkDiscord: true,
-      linkMedium: true,
-      contractAddress: true,
-      state: true,
-    },
-    where: {
-      id: orgList ? { in: orgList.toString().split(",") } : undefined,
     },
     orderBy: [
       {
-        name: sort === "desc" ? sort : "asc",
+        createdAt: sort === "asc" ? sort : "desc",
       },
-    ],
+    ]
   });
-  return res.status(200).json(quests);
+  return res.status(200).json(users);
 }

@@ -139,7 +139,7 @@ export default async function handler(
   });
   if (count) {
     if (applyStatuses)
-      res.status(200).json(apply.filter((a: any) => applyStatuses?.find(status => status === a.historyStatus[0].status)?.length))
+      res.status(200).json(apply.filter((a: any) => applyStatuses?.find(status => status === a.historyStatus[0].status))?.length)
     else
       res.status(200).json(apply.length);
   }

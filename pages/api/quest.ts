@@ -238,6 +238,9 @@ export default async function handler(
     }
     else if (req.method === 'POST') {
         const _hasRights = await hasRights({ token: token!, type: "INHOUSE" });
+
+
+        console.log(req.body)
         if (!_hasRights)
             res.status(400).json({ error: "auth not correct" });
 
@@ -254,11 +257,11 @@ export default async function handler(
                     },
 
                     reffLink: req.body.reffLink,
-                    tokenReward: {
+                    tokenReward: req.body.tokenReward ? {
                         connect: {
-                            id: req.body.tokenReward,
+                            id: req.body.tokenReward
                         },
-                    },
+                    } : undefined,
                     reffReward: req.body.reffReward ? Number(req.body.reffReward) : null,
                     state: req.body.state,
                     organization: {
@@ -272,17 +275,17 @@ export default async function handler(
                         },
                     },
 
-                    type: {
+                    type: req.body.type ? {
                         connect: {
                             id: req.body.type,
                         },
-                    },
+                    } : undefined,
                     linkApply: req.body.linkApply,
-                    token: {
+                    token: req.body.token ? {
                         connect: {
                             id: req.body.token,
                         },
-                    },
+                    } : undefined,
                     rewardFrom: req.body.rewardFrom ? parseInt(req.body.rewardFrom) : null,
                     rewardTo: req.body.rewardTo ? parseInt(req.body.rewardTo) : null,
                     textBlocks: req.body.textBlocks,

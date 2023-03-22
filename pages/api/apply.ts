@@ -35,6 +35,11 @@
  *         in: query
  *         required: false
  *         type: string
+ *       - name: count
+ *         description: return count of rows
+ *         in: query
+ *         required: false
+ *         type: boolean
  *     responses:
  *       200:
  *         description: success result
@@ -66,7 +71,7 @@ export default async function handler(
     return res.status(400).json({ error: "auth not correct" });
 
   const {
-    query: { take, skip, sort, organizationId, jobId, applySelect }
+    query: { take, skip, sort, organizationId, jobId, applySelect, count }
   } = req;
 
   const applyStatuses = applySelect ? applySelect.toString().split(",").map(status => status.trim() as ApplyHistoryStatus) : undefined;
@@ -115,6 +120,7 @@ export default async function handler(
         orderBy: {
           createdAt: 'desc',
         },
+        take: 1,
       }
     },
     where: {
@@ -124,13 +130,6 @@ export default async function handler(
         },
         id: jobId?.toString() || undefined
       },
-      historyStatus: {
-        some: {
-          status: {
-            in: applyStatuses,
-          }
-        }
-      }
     },
     orderBy: [
       {
@@ -138,5 +137,16 @@ export default async function handler(
       },
     ]
   });
-  return res.status(200).json(apply);
+  if (count) {
+    if (applyStatuses)
+      res.status(200).json(apply.filter((a: any) => applyStatuses?.find(status => status === a.historyStatus[0].status)?.length))
+    else
+      res.status(200).json(apply.length);
+  }
+  else {
+    if (applySelect)
+      res.status(200).json(apply.filter((a: any) => applyStatuses?.find(status => status === a.historyStatus[0].status)))
+    else
+      return res.status(200).json(apply);
+  }
 }

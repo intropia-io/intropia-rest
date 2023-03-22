@@ -1322,6 +1322,13 @@
             "type": "string"
           },
           {
+            "name": "jobId",
+            "description": "take filter by jobId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "take",
             "description": "take number of rows (default 100)",
             "in": "query",
@@ -1341,6 +1348,91 @@
             "in": "query",
             "default": "desc",
             "required": false,
+            "type": "string"
+          },
+          {
+            "name": "applySelect",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Apply"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/apply/{id}": {
+      "post": {
+        "tags": [
+          "Apply"
+        ],
+        "description": "Get apply by id",
+        "parameters": [
+          {
+            "name": "id",
+            "description": "id of apply",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "applySelect",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Apply"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/apply/status/{id}": {
+      "post": {
+        "tags": [
+          "Apply"
+        ],
+        "description": "Change status of apply",
+        "parameters": [
+          {
+            "name": "id",
+            "description": "id of apply",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "description": "status",
+            "in": "query",
+            "required": true,
             "type": "string"
           }
         ],

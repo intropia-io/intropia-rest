@@ -50,6 +50,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "@intropia-io/prisma-schema";
 import { hasRights } from "../../prisma/hasRights";
+import { ApplyHistoryStatus } from "@prisma/client";
 
 export default async function handler(
   req: NextApiRequest,

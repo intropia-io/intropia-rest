@@ -10,6 +10,10 @@
  *         in: path
  *         required: true
  *         type: string
+ *       - name: applySelect
+ *         in: query
+ *         required: false
+ *         type: string
  *     responses:
  *       200:
  *         description: success result
@@ -23,6 +27,7 @@
  */
 
 import { prisma } from "@intropia-io/prisma-schema";
+import { ApplyHistoryStatus } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { hasRights } from "../../../prisma/hasRights";
 
@@ -40,9 +45,10 @@ export default async function handler(
         return res.status(400).json({ error: "auth not correct" });
 
     const {
-        query: { id }
+        query: { id, applySelect }
     } = req;
 
+    const applyStatuses = applySelect ? applySelect.toString().split(",").map(status => status.trim() as ApplyHistoryStatus) : undefined;
 
     const apply = await prisma.apply.findFirst({
         select: {
@@ -93,7 +99,13 @@ export default async function handler(
         },
         where: {
             id: id?.toString(),
-
+            historyStatus: {
+                some: {
+                    status: {
+                        in: applyStatuses,
+                    }
+                }
+            }
         },
     });
     return res.status(200).json(apply);

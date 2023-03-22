@@ -159,7 +159,7 @@ export default async function handler(
             if (withApply)
                 res.status(200).json(quests.filter((quest: any) => quest.apply.filter((a: any) => applyStatuses?.find(status => status === a.historyStatus[0].status)).length > 0).length)
             else
-                res.status(200).json(quests.filter((quest: any) => quest.apply.length > 0).length);
+                res.status(200).json(quests.length);
         }
 
         else {

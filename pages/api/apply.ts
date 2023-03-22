@@ -31,6 +31,10 @@
  *         default: desc
  *         required: false
  *         type: string
+ *       - name: applySelect
+ *         in: query
+ *         required: false
+ *         type: string
  *     responses:
  *       200:
  *         description: success result
@@ -61,8 +65,11 @@ export default async function handler(
     return res.status(400).json({ error: "auth not correct" });
 
   const {
-    query: { take, skip, sort, organizationId, jobId }
+    query: { take, skip, sort, organizationId, jobId, applySelect }
   } = req;
+
+  const applyStatuses = applySelect ? applySelect.toString().split(",").map(status => status.trim() as ApplyHistoryStatus) : undefined;
+
   const apply = await prisma.apply.findMany({
     take: take ? parseInt(take.toString()) : 100,
     skip: skip ? parseInt(skip.toString()) : undefined,
@@ -115,6 +122,13 @@ export default async function handler(
           id: organizationId?.toString() || undefined
         },
         id: jobId?.toString() || undefined
+      },
+      historyStatus: {
+        some: {
+          status: {
+            in: applyStatuses,
+          }
+        }
       }
     },
     orderBy: [

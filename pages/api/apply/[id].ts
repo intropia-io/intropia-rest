@@ -55,6 +55,7 @@ export default async function handler(
             id: true,
             createdAt: true,
             expectedSalary: true,
+            notes: true,
             link: true,
             quest: {
                 select: {

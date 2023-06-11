@@ -90,6 +90,7 @@ export default async function handler(
                 createdAt: true,
                 updatedAt: true,
                 organization: true,
+                options: true,
                 state: true,
                 tokenReward: true,
                 tags: true,
@@ -176,6 +177,7 @@ export default async function handler(
                 rewardFrom: req.body.rewardFrom ? parseInt(req.body.rewardFrom) : null,
                 rewardTo: req.body.rewardTo ? parseInt(req.body.rewardTo) : null,
                 textBlocks: req.body.textBlocks,
+                options: req.body.options,
             },
             where: {
                 id: questId.toString(),
